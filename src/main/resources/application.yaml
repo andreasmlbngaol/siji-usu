@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: SijiUsu
+  datasource:
+    url: jdbc:postgresql://localhost:5432/one_usu_db
+    username: andre
+    password: 150503
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  data:
+    jdbc:
+      dialect: postgresql
+
+jwt:
+  secret: c2V0ZWxhaHV0c3Bvc2phd2F0ZXJiaXRsYWh1YXNvbmV1c3U=
+
+server:
+  port: 8080

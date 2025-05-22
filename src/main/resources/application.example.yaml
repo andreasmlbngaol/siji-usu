@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: SijiUsu
+  datasource:
+    url: jdbc:postgresql://localhost:5432/${DATABASE_NAME}
+    username: ${USERNAME}
+    password: ${PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  data:
+    jdbc:
+      dialect: postgresql
+
+jwt:
+  secret: ${BASE64_JWT_SECRET} # 256-bit minimum (32 plain character)
+
+server:
+  port: 8080
