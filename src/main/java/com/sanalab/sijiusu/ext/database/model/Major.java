@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity(name = "majors")
 public class Major {
     @Id
@@ -31,6 +32,9 @@ public class Major {
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Lecturer> lecturers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "major", fetch = FetchType.LAZY)
+    private List<Course> courses = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -86,5 +90,13 @@ public class Major {
 
     public void setLecturers(List<Lecturer> lecturers) {
         this.lecturers = lecturers;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

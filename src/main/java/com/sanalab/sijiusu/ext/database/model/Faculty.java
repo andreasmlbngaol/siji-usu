@@ -2,8 +2,10 @@ package com.sanalab.sijiusu.ext.database.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity(name = "faculties")
 public class Faculty {
     @Id
@@ -17,7 +19,7 @@ public class Faculty {
     private String facultyCode;
 
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
-    private List<Major> departments;
+    private List<Major> departments = new ArrayList<>();
 
     public Long getId() {
         return id;

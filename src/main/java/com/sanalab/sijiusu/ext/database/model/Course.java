@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity(name = "courses")
 public class Course {
     @Id
@@ -15,7 +16,11 @@ public class Course {
     private String name;
 
     @Column(nullable = false, unique = true)
-    private String code;
+    private String course_code;
+
+    @JoinColumn(name = "major_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Major major;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<CourseSection> courseSections = new ArrayList<>();
@@ -36,12 +41,12 @@ public class Course {
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getCourse_code() {
+        return course_code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCourse_code(String code) {
+        this.course_code = code;
     }
 
     public List<CourseSection> getCourseSections() {
@@ -50,5 +55,13 @@ public class Course {
 
     public void setCourseSections(List<CourseSection> courseSections) {
         this.courseSections = courseSections;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
     }
 }

@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: SijiUsu
+  datasource:
+    url: jdbc:postgresql://ep-floral-water-a1y6tg39-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_aFOLwlpi07tP
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  data:
+    jdbc:
+      dialect: postgresql
+
+jwt:
+  secret: c2V0ZWxhaHV0c3Bvc2phd2F0ZXJiaXRsYWh1YXNvbmV1c3U=
+
+server:
+  port: 8080
