@@ -1,5 +1,8 @@
 # Endpoints
 
+HTML documentation for the API endpoints.
+[API Documentation](/docs/index.html)
+
 | Category             | Method | Endpoint*                                                     | Description                                 |
 |----------------------|--------|---------------------------------------------------------------|---------------------------------------------|
 | **Authentication**   | POST   | [`/auth/login`](#post-authlogin)                              | Login and obtain access & refresh tokens    |
