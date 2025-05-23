@@ -46,6 +46,8 @@ The access token is used to authenticate requests to protected resources, while 
 - `access_token` type is String, the JWT access token. Valid for 15 minutes.
 - `refresh_token` type is String, the JWT refresh token. Valid for 7 days.
 
+***
+
 ### [`POST /auth/refresh`](#endpoints)
 
 This endpoint is used to refresh the access token using the refresh token.
@@ -71,6 +73,8 @@ This endpoint is used to refresh the access token using the refresh token.
 
 - `access_token` type is String, the JWT access token. Valid for 15 minutes.
 - `refresh_token` type is String, the JWT refresh token. Valid for 7 days.
+
+***
 
 ### [`POST /auth/logout`](#endpoints)
 
@@ -124,6 +128,8 @@ This endpoint is used to create a new lecturer.
 
 empty response with status code 201 (Created).
 
+***
+
 ### [`POST /admin/student`](#endpoints)
 
 This endpoint is used to create a new student.
@@ -152,6 +158,8 @@ This endpoint is used to create a new student.
 
 empty response with status code 201 (Created).
 
+***
+
 ### [`POST /admin/faculty`](#endpoints)
 
 This endpoint is used to create a new faculty.
@@ -171,6 +179,8 @@ This endpoint is used to create a new faculty.
 #### Response:
 
 empty response with status code 201 (Created).
+
+***
 
 ### [`POST /admin/{faculty_id}/major`](#endpoints)
 
@@ -193,6 +203,8 @@ This endpoint is used to create a new major/department.
 
 empty response with status code 201 (Created).
 
+***
+
 ### [`POST /admin/{department_id}/room`](#endpoints)
 
 This endpoint is used to create a new room in a department.
@@ -211,6 +223,8 @@ This endpoint is used to create a new room in a department.
 #### Response:
 
 empty response with status code 201 (Created).
+
+***
 
 ### [`POST /admin/{major_id}/course`](#endpoints)
 
@@ -232,6 +246,8 @@ This endpoint is used to create a new course.
 #### Response:
 
 empty response with status code 201 (Created).
+
+***
 
 ### [`POST /admin/{course_id}/section`](#endpoints)
 
