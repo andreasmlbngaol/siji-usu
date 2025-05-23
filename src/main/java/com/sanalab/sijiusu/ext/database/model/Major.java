@@ -9,6 +9,12 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 @Entity(name = "majors")
+@Table(
+    name = "majors",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"major_code", "faculty_id"})
+    }
+)
 public class Major {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
