@@ -1,6 +1,6 @@
-package com.sanalab.sijiusu.ext.database.repository;
+package com.sanalab.sijiusu.core.database.repository;
 
-import com.sanalab.sijiusu.ext.database.model.Faculty;
+import com.sanalab.sijiusu.core.database.model.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FacultyRepository extends JpaRepository<Faculty, Long> {

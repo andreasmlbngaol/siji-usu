@@ -1,14 +1,15 @@
 package com.sanalab.sijiusu.siji_student.database.model;
 
 import com.sanalab.sijiusu.auth.database.model.User;
-import com.sanalab.sijiusu.ext.database.model.CourseSection;
-import com.sanalab.sijiusu.ext.database.model.Major;
+import com.sanalab.sijiusu.core.database.model.CourseSection;
+import com.sanalab.sijiusu.core.database.model.Major;
 import com.sanalab.sijiusu.siji_lecturer.database.model.Lecturer;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity(name = "students")
 public class Student extends User {
     @Column(nullable = false, unique = true)

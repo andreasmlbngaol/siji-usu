@@ -1,4 +1,4 @@
-package com.sanalab.sijiusu.ext.database.model;
+package com.sanalab.sijiusu.core.database.model;
 
 import jakarta.persistence.*;
 

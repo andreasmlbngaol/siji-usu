@@ -1,6 +1,6 @@
 package com.sanalab.sijiusu.siji_student.service;
 
-import com.sanalab.sijiusu.ext.service.CourseSectionConverter;
+import com.sanalab.sijiusu.core.converter.CourseSectionConverter;
 import com.sanalab.sijiusu.siji_admin.controller.AdminController;
 import com.sanalab.sijiusu.siji_lecturer.service.LecturerConverter;
 import com.sanalab.sijiusu.siji_student.database.model.Student;

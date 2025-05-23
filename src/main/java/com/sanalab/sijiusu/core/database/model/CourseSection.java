@@ -1,4 +1,4 @@
-package com.sanalab.sijiusu.ext.database.model;
+package com.sanalab.sijiusu.core.database.model;
 
 import com.sanalab.sijiusu.siji_lecturer.database.model.Lecturer;
 import com.sanalab.sijiusu.siji_student.database.model.Student;

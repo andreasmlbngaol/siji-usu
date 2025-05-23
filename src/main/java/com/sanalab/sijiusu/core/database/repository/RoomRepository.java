@@ -1,6 +1,6 @@
-package com.sanalab.sijiusu.ext.database.repository;
+package com.sanalab.sijiusu.core.database.repository;
 
-import com.sanalab.sijiusu.ext.database.model.Room;
+import com.sanalab.sijiusu.core.database.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
