@@ -15,8 +15,8 @@ public class Course {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String course_code;
+    @Column(name = "course_code", nullable = false, unique = true)
+    private String courseCode;
 
     @JoinColumn(name = "major_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,12 +41,12 @@ public class Course {
         this.name = name;
     }
 
-    public String getCourse_code() {
-        return course_code;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourse_code(String code) {
-        this.course_code = code;
+    public void setCourseCode(String code) {
+        this.courseCode = code;
     }
 
     public List<CourseSection> getCourseSections() {

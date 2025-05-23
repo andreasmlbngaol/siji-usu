@@ -5,7 +5,14 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity(name = "rooms")
+@Table(
+    name = "rooms",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name", "department_id"})
+    }
+)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

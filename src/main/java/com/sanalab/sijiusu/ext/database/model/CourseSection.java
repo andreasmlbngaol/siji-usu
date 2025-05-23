@@ -7,22 +7,33 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity(name = "course_sections")
+@Table(
+    name = "course_sections",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name", "course_id"})
+    }
+)
 public class CourseSection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lecturer_id", nullable = false)
+    @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "room_id")
     private Room room;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 
     @ManyToMany
     @JoinTable(
@@ -31,10 +42,6 @@ public class CourseSection {
         inverseJoinColumns = @JoinColumn(name = "student_id") // foreign key ke Student
     )
     private List<Student> students = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id", nullable = false)
-    private Course course;
 
     public Long getId() {
         return id;
