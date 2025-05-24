@@ -5,10 +5,11 @@ import com.sanalab.sijiusu.siji_admin.academic.service.AdminRoomService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(Routing.ADMIN_ACADEMIC_DEPARTMENTS)
+@RequestMapping(Routing.ADMINS_ACADEMIC_DEPARTMENTS)
 public class AdminRoomController {
     private final AdminRoomService adminRoomService;
 
@@ -22,6 +23,7 @@ public class AdminRoomController {
     ) { }
 
     @PostMapping("/{departmentId}" + Routing.ROOMS)
+    @ResponseStatus(HttpStatus.CREATED)
     public void addRoom(
         @Valid @RequestBody AddRoomPayload payload,
         @PathVariable Long departmentId

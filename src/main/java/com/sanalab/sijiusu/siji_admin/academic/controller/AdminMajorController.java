@@ -7,10 +7,11 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(Routing.ADMIN_ACADEMIC_FACULTIES)
+@RequestMapping(Routing.ADMINS_ACADEMIC_FACULTIES)
 public class AdminMajorController {
     private final AdminMajorService adminMajorService;
 
@@ -28,6 +29,7 @@ public class AdminMajorController {
     ) { }
 
     @PostMapping("/{facultyId}" + Routing.MAJORS)
+    @ResponseStatus(HttpStatus.CREATED)
     public void addMajor(
         @Valid @RequestBody AddMajorPayload payload,
         @PathVariable Long facultyId

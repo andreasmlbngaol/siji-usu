@@ -6,7 +6,7 @@ import com.sanalab.sijiusu.siji_lecturer.service.LecturerConverter;
 import com.sanalab.sijiusu.siji_student.database.model.Student;
 
 public class StudentConverter {
-    public static AdminUsersController.StudentDto toDTO(Student student) {
+    public static AdminUsersController.StudentDto toDto(Student student) {
         var academicAdvisor = LecturerConverter.toSumDto(student.getAcademicAdvisor());
         var sections = student.getCourseSections()
             .stream()
@@ -22,6 +22,14 @@ public class StudentConverter {
             student.getMajor().getName(),
             academicAdvisor,
             sections
+        );
+    }
+
+    public static AdminUsersController.StudentSumDto toSumDto(Student student) {
+        return new AdminUsersController.StudentSumDto(
+            student.getId(),
+            student.getName(),
+            student.getNim()
         );
     }
 }

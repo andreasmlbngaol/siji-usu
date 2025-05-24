@@ -2,14 +2,21 @@ package com.sanalab.sijiusu.siji_admin.users.service;
 
 import com.sanalab.sijiusu.auth.data.Role;
 import com.sanalab.sijiusu.auth.database.repository.UserRepository;
+import com.sanalab.sijiusu.auth.service.UserConverter;
 import com.sanalab.sijiusu.core.component.HashEncoder;
 import com.sanalab.sijiusu.core.database.repository.MajorRepository;
+import com.sanalab.sijiusu.siji_admin.database.repository.AdminRepository;
+import com.sanalab.sijiusu.siji_admin.users.controller.AdminController;
+import com.sanalab.sijiusu.siji_admin.users.controller.AdminUsersController;
 import com.sanalab.sijiusu.siji_lecturer.database.model.Lecturer;
 import com.sanalab.sijiusu.siji_lecturer.database.repository.LecturerRepository;
+import com.sanalab.sijiusu.siji_lecturer.service.LecturerConverter;
 import com.sanalab.sijiusu.siji_student.database.model.Student;
 import com.sanalab.sijiusu.siji_student.database.repository.StudentRepository;
+import com.sanalab.sijiusu.siji_student.service.StudentConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +30,7 @@ public class AdminUsersService {
     private final LecturerRepository lecturerRepository;
     private final StudentRepository studentRepository;
     private final MajorRepository majorRepository;
+    private final AdminRepository adminRepository;
 
     @Autowired
     public AdminUsersService(
@@ -30,13 +38,14 @@ public class AdminUsersService {
         UserRepository userRepository,
         LecturerRepository lecturerRepository,
         StudentRepository studentRepository,
-        MajorRepository majorRepository
-    ) {
+        MajorRepository majorRepository,
+        AdminRepository adminRepository) {
         this.hashEncoder = hashEncoder;
         this.userRepository = userRepository;
         this.lecturerRepository = lecturerRepository;
         this.studentRepository = studentRepository;
         this.majorRepository = majorRepository;
+        this.adminRepository = adminRepository;
     }
 
     public void addStudent(
@@ -117,7 +126,54 @@ public class AdminUsersService {
         lecturerRepository.save(lecturer);
     }
 
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public List<AdminUsersController.StudentDto> getAllStudents() {
+        return studentRepository.findAll()
+            .stream()
+            .map(StudentConverter::toDto)
+            .toList();
+    }
+    public AdminUsersController.StudentDto getStudentById(Long id) {
+        var student = studentRepository.findById(id).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Student not found")
+        );
+        return StudentConverter.toDto(student);
+    }
+
+    public List<AdminUsersController.LecturerDto> getAllLecturers() {
+        return lecturerRepository.findAll()
+            .stream()
+            .map(LecturerConverter::toDto)
+            .toList();
+    }
+    public AdminUsersController.LecturerDto getLecturerById(Long id) {
+        var teacher = lecturerRepository.findById(id).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Lecturer not found")
+        );
+        return LecturerConverter.toDto(teacher);
+    }
+
+    public List<AdminUsersController.UserDto> getAllUsers() {
+        return userRepository.findAll()
+            .stream()
+            .map(UserConverter::toDto)
+            .toList();
+    }
+    public AdminUsersController.UserDto getUserById(Long id) {
+        var user = userRepository.findById(id).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "User not found")
+        );
+        return UserConverter.toDto(user);
+    }
+
+    public AdminController.AdminDto getCurrentAdmin() {
+        Long ownerId = (Long) SecurityContextHolder.getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        var owner = adminRepository.findById(ownerId).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Admin not found")
+        );
+
+        return AdminConverter.toDto(owner);
     }
 }

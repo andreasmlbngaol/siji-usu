@@ -1,28 +1,47 @@
 # Endpoints
 
-**INI SALAH YA. BELUM KU PERBAIKI. SABAR!!**
 
-HTML documentation for the API endpoints.
-[API Documentation](/docs/index.html)
+## Table of Contents
 
-| Category             | Method | Endpoint*                                                     | Description                                 |
-|----------------------|--------|---------------------------------------------------------------|---------------------------------------------|
-| **Authentication**   | POST   | [`/auth/login`](#post-authlogin)                              | Login and obtain access & refresh tokens    |
-| **Authentication**   | POST   | [`/auth/refresh` ](#post-authrefresh)                         | Refresh access token using a refresh token  |
-| **Authentication**   | POST   | [`/auth/logout`](#post-authlogout)                            | Logout and invalidate the refresh token     |
-| **Admin - Lecturer** | POST   | [`/admin/lecturer`](#post-adminlecturer)                      | Create a new lecturer                       |
-| **Admin - Student**  | POST   | [`/admin/student`](#post-adminstudent)                        | Create a new student                        |
-| **Admin - Faculty**  | POST   | [`/admin/faculty`](#post-adminfaculty)                        | Create a new faculty                        |
-| **Admin - Major**    | POST   | [`/admin/{faculty_id}/major`](#post-adminfaculty_idmajor)     | Create a new major within a faculty         |
-| **Admin - Room**     | POST   | [`/admin/{department_id}/room`](#post-admindepartment_idroom) | Create a new room within a department       |
-| **Admin - Course**   | POST   | [`/admin/{major_id}/course`](#post-adminmajor_idcourse)       | Create a new course within a major          |
-| **Admin - Section**  | POST   | [`/admin/{course_id}/section`](#post-admincourse_idsection)   | Create a new course section within a course |
+_* Click the endpoint to navigate to endpoint detail!_
 
-_*  Click the endpoint to navigate to endpoint detail!_
+### Authentication
+
+| Category              | Method | Endpoint*                                                                                                       | Description                                 |
+|-----------------------|--------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| **Authentication**    | POST   | [`/api/auth/login`](#post-apiauthlogin)                                                                         | Login and obtain access & refresh tokens    |
+| **Authentication**    | POST   | [`/api/auth/refresh` ](#post-apiauthrefresh)                                                                    | Refresh access token using a refresh token  |
+| **Authentication**    | POST   | [`/api/auth/logout`](#post-apiauthlogout)                                                                       | Logout and invalidate the refresh token     |
+
+### Admin
+
+| Category              | Method | Endpoint*                                                                                                       | Description                                 |
+|-----------------------|--------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| **Admin - Current**   | GET    | [`/api/admins`](#get-apiadmins)                                                                                 | Get current admin                           |
+| **Admin - Lecturer**  | POST   | [`/api/admins/users/lecturers`](#post-apiadminsuserslecturers)                                                  | Create a new lecturer                       |
+| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers`](#get-apiadminsuserslecturers)                                                   | Get all lecturers                           |
+| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers/{id}`](#get-apiadminsuserslecturersid)                                            | Get lecturer with certain id                |
+| **Admin - Student**   | POST   | [`/api/admins/users/students`](#post-apiadminsusersstudents)                                                    | Create a new student                        |
+| **Admin - Student**   | GET    | [`/api/admins/users/students`](#get-apiadminsusersstudents)                                                     | Get all students                            |
+| **Admin - Student**   | GET    | [`/api/admins/users/students/{id}`](#get-apiadminsusersstudentsid)                                              | Get student with certain id                 |
+| **Admin - User**      | GET    | [`/api/admins/users`](#get-apiadminsusers)                                                                      | Get all users                               |
+| **Admin - User**      | GET    | [`/api/admins/users/{id}`](#get-apiadminsusersid)                                                               | Get user with certain id                    |
+| **Admin - Faculty**   | POST   | [`/api/admins/academic/faculties`](#post-apiadminsacademicfaculties)                                            | Create a new faculty                        |
+| **Admin - Major**     | POST   | [`/api/admins/academic/faculties/{faculty_id}/majors`](#post-apiadminsacademicfacultiesfaculty_idmajors)        | Create a new major within a faculty         |
+| **Admin - Room**      | POST   | [`/api/admins/academic/deparments/{department_id}/rooms`](#post-apiadminsacademicdepartmentsdepartment_idrooms) | Create a new room within a department       |
+| **Admin - Course**    | POST   | [`/api/admins/academic/majors/{major_id}/courses`](#post-apiadminsacademicmajorsmajor_idcourses)                | Create a new course within a major          |
+| **Admin - Section**   | POST   | [`/api/admins/academic/courses/{course_id}/sections`](#post-apiadminsacademiccoursescourse_idsections)          | Create a new course section within a course |
+
+### Student
+
+| Category              | Method | Endpoint*                                             | Description                |
+|-----------------------|--------|-------------------------------------------------------|----------------------------|
+| **Student - Current** | GET    | [`/api/students`](#get-apistudents)                   | Get current student        |
+| **Student - Section** | POST   | [`/api/students/sections`](#post-apistudentssections) | Enroll to a course section |
 
 ## Authentication
 
-### [`POST /auth/login`](#endpoints)
+### [`POST /api/auth/login`](#endpoints)
 
 This endpoint is used to authenticate a user and get an JWT access token and refresh token.
 The access token is used to authenticate requests to protected resources, while the refresh token can be used to get a new access token when the current one expires.
@@ -53,7 +72,7 @@ The access token is used to authenticate requests to protected resources, while 
 
 ***
 
-### [`POST /auth/refresh`](#endpoints)
+### [`POST /api/auth/refresh`](#endpoints)
 
 This endpoint is used to refresh the access token using the refresh token.
 
@@ -81,7 +100,7 @@ This endpoint is used to refresh the access token using the refresh token.
 
 ***
 
-### [`POST /auth/logout`](#endpoints)
+### [`POST /api/auth/logout`](#endpoints)
 
 `Authorization: Bearer {access_token}`
 
@@ -105,7 +124,28 @@ empty response with status code 204 (No Content).
 
 `Authorization: Bearer {access_token}`
 
-### [`POST /admin/lecturer`](#endpoints)
+### [`GET /api/admins`](#endpoints)
+
+This endpoint is used to get the current admin's information.
+
+#### Payload:
+
+none
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "email": "string",
+  "nip": "string"
+}
+```
+
+***
+
+### [`POST /api/admins/users/lecturers`](#endpoints)
 
 This endpoint is used to create a new lecturer.
 
@@ -135,7 +175,91 @@ empty response with status code 201 (Created).
 
 ***
 
-### [`POST /admin/student`](#endpoints)
+### [`GET /api/admins/users/lecturers`](#endpoints)
+
+This endpoint is used to get all lecturers.
+
+#### Payload:
+
+none
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string",
+    "email": "string",
+    "nip": "string",
+    "nidn": "string",
+    "faculty": "string",
+    "department": "string",
+    "advised_students": [
+      {
+        "id": 23,
+        "name": "string",
+        "nim": "string"
+      }
+    ],
+    "courses_taught": [
+      {
+        "id": 23,
+        "course_name": "string",
+        "section_name": "string",
+        "room": "string",
+        "lecturer": "string"
+      }
+    ]
+  }
+]
+```
+
+***
+
+### [`GET /api/admins/users/lecturers/{id}`](#endpoints)
+
+This endpoint is used to get a lecturer with a certain ID.
+
+#### Payload:
+
+none
+
+- `{id}` type is Long, the ID of the lecturer.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "email": "string",
+  "nip": "string",
+  "nidn": "string",
+  "faculty": "string",
+  "department": "string",
+  "advised_students": [
+    {
+      "id": 23,
+      "name": "string",
+      "nim": "string"
+    }
+  ],
+  "courses_taught": [
+    {
+      "id": 23,
+      "course_name": "string",
+      "section_name": "string",
+      "room": "string",
+      "lecturer": "string"
+    }
+  ]
+}
+```
+
+***
+
+### [`POST /api/admins/users/students`](#endpoints)
 
 This endpoint is used to create a new student.
 
@@ -165,7 +289,129 @@ empty response with status code 201 (Created).
 
 ***
 
-### [`POST /admin/faculty`](#endpoints)
+### [`GET /api/admins/users/students`](#endpoints)
+
+This endpoint is used to get all students.
+
+#### Payload:
+
+none
+
+### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string",
+    "email": "string",
+    "nim": "string",
+    "faculty": "string",
+    "major": "string",
+    "academic_advisor": {
+      "id": 23,
+      "name": "string"
+    },
+    "courses_taken": [
+      {
+        "id": 23,
+        "course_name": "string",
+        "section_name": "string",
+        "room": "string",
+        "lecturer": "string"
+      }
+    ]
+  }
+]
+```
+
+***
+
+### [`GET /api/admins/users/students/{id}`](#endpoints)
+
+This endpoint is used to get a student with a certain ID.
+
+#### Payload:
+
+none
+
+- `{id}` type is Long, the ID of the student.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "email": "string",
+  "nim": "string",
+  "faculty": "string",
+  "major": "string",
+  "academic_advisor": {
+    "id": 23,
+    "name": "string"
+  },
+  "courses_taken": [
+    {
+      "id": 23,
+      "course_name": "string",
+      "section_name": "string",
+      "room": "string",
+      "lecturer": "string"
+    }
+  ]
+}
+```
+
+***
+
+### [`GET /api/admins/users`](#endpoints)
+
+This endpoint is used to get all users (admins, lecturers, and students).
+
+#### Payload:
+
+none
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string",
+    "email": "string",
+    "role": "string"
+  }
+]
+```
+
+***
+
+### [`GET /api/admins/users/{id}`](#endpoints)
+
+This endpoint is used to get a user with a certain ID.
+
+#### Payload:
+
+none
+
+- `{id}` type is Long, the ID of the user.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "email": "string",
+  "role": "string"
+}
+```
+
+***
+
+### [`POST /api/admins/academic/faculties`](#endpoints)
 
 This endpoint is used to create a new faculty.
 
@@ -187,7 +433,7 @@ empty response with status code 201 (Created).
 
 ***
 
-### [`POST /admin/{faculty_id}/major`](#endpoints)
+### [`POST /api/admins/academic/faculties/{faculty_id}/majors`](#endpoints)
 
 This endpoint is used to create a new major/department.
 
@@ -210,7 +456,7 @@ empty response with status code 201 (Created).
 
 ***
 
-### [`POST /admin/{department_id}/room`](#endpoints)
+### [`POST /api/admins/academic/departments/{department_id}/rooms`](#endpoints)
 
 This endpoint is used to create a new room in a department.
 
@@ -231,7 +477,7 @@ empty response with status code 201 (Created).
 
 ***
 
-### [`POST /admin/{major_id}/course`](#endpoints)
+### [`POST /api/admins/academic/majors/{major_id}/courses`](#endpoints)
 
 This endpoint is used to create a new course.
 
@@ -252,7 +498,7 @@ empty response with status code 201 (Created).
 
 ***
 
-### [`POST /admin/{course_id}/section`](#endpoints)
+### [`POST /api/admins/academic/courses/{course_id}/sections`](#endpoints)
 
 This endpoint is used to create a new course section.
 
@@ -276,3 +522,65 @@ This endpoint is used to create a new course section.
 #### Response:
 
 empty response with status code 201 (Created).
+
+***
+
+## Student
+
+`Authorization: Bearer {access_token}`
+
+### [`GET /api/students`](#endpoints)
+
+This endpoint is used to get the current student's information.
+
+#### Payload:
+
+none
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "email": "string",
+  "nim": "string",
+  "faculty": "string",
+  "major": "string",
+  "academic_advisor": {
+    "id": 23,
+    "name": "string"
+  },
+  "courses_taken": [
+    {
+      "id": 23,
+      "course_name": "string",
+      "section_name": "string",
+      "room": "string",
+      "lecturer": "string"
+    }
+  ]
+}
+```
+
+***
+
+### [`POST /api/students/sections`](#endpoints)
+
+This endpoint is used to enroll a student to a course section.
+
+#### Payload:
+
+```json
+{
+  "section_id": 23
+}
+```
+
+- `section_id` type is Long, the ID of the course section.
+
+#### Response:
+
+empty response with status code 204 (No Content).
+
+***

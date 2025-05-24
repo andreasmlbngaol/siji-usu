@@ -16,8 +16,8 @@ public class Routing {
     public static final String SECTIONS = "/sections";
 
     public static final String ADMINS = "/admins";
-    public static final String ADMIN_USERS = ADMINS + "/users";
-    public static final String ADMIN_ACADEMIC = ADMINS + "/academic";
-    public static final String ADMIN_ACADEMIC_FACULTIES = ADMIN_ACADEMIC + FACULTIES;
-    public static final String ADMIN_ACADEMIC_DEPARTMENTS = ADMIN_ACADEMIC + DEPARTMENTS;
+    public static final String ADMINS_USERS = ADMINS + "/users";
+    public static final String ADMINS_ACADEMIC = ADMINS + "/academic";
+    public static final String ADMINS_ACADEMIC_FACULTIES = ADMINS_ACADEMIC + FACULTIES;
+    public static final String ADMINS_ACADEMIC_DEPARTMENTS = ADMINS_ACADEMIC + DEPARTMENTS;
 }
