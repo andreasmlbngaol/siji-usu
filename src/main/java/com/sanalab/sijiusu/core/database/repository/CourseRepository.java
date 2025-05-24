@@ -3,7 +3,9 @@ package com.sanalab.sijiusu.core.database.repository;
 import com.sanalab.sijiusu.core.database.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CourseRepository extends JpaRepository<Course, Long> {
+import java.util.Optional;
 
-    boolean existsByCourseCode(String courseCode);
+@SuppressWarnings("unused")
+public interface CourseRepository extends JpaRepository<Course, Long> {
+    Optional<Course> findByNameContainingIgnoreCase(String name); // Untuk mencari course berdasarkan nama yang mengandung string tertentu
 }

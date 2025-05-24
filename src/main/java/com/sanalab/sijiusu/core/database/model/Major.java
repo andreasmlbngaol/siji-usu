@@ -23,7 +23,7 @@ public class Major {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true, name = "major_code")
+    @Column(nullable = false, name = "major_code")
     private String majorCode;
 
     @ManyToOne(fetch = FetchType.LAZY)

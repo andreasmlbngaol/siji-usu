@@ -12,6 +12,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Entity(name = "students")
 public class Student extends User {
+    @Column(nullable = false)
+    private Integer year;
+
     @Column(nullable = false, unique = true)
     private String nim;
 
@@ -25,6 +28,14 @@ public class Student extends User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "academic_advisor_id")
     private Lecturer academicAdvisor;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
 
     public String getNim() {
         return nim;

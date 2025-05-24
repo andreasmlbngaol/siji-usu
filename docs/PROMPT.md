@@ -184,4 +184,5 @@
     Dia malah 500 saat saya hanya mengirimkan password, tanpa identifier. Bukannya seharusnya bad request?
 31. Cara cek string adalah numerik?
 32. Bagaimaan pakai switch penggantin if else nya? Saya memang bikin perilaku seperti when di kotlin, tapi switch perlu parameter
-33. 
+33. Apakah ada forEachIndexed di Java?
+34. 

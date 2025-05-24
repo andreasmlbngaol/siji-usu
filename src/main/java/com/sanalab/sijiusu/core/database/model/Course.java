@@ -15,9 +15,6 @@ public class Course {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "course_code", nullable = false, unique = true)
-    private String courseCode;
-
     @JoinColumn(name = "major_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private Major major;
@@ -39,14 +36,6 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCourseCode() {
-        return courseCode;
-    }
-
-    public void setCourseCode(String code) {
-        this.courseCode = code;
     }
 
     public List<CourseSection> getCourseSections() {

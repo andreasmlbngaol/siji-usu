@@ -1,5 +1,7 @@
 # Endpoints
 
+**INI SALAH YA. BELUM KU PERBAIKI. SABAR!!**
+
 HTML documentation for the API endpoints.
 [API Documentation](/docs/index.html)
 
@@ -177,7 +179,7 @@ This endpoint is used to create a new faculty.
 ```
 
 - `name` type is String, the name of the faculty.
-- `faculty_code` type is String, the code of the faculty. Must be unique.
+- `faculty_code` type is String, the code of the faculty. Must be 2 digits and unique.
 
 #### Response:
 
@@ -237,14 +239,12 @@ This endpoint is used to create a new course.
 
 ```json
 {
-  "name": "string",
-  "course_code": "string"
+  "name": "string"
 }
 ```
 
 - `{major_id}` type is Long, the ID of the major/department.
 - `name` type is String, the name of the course.
-- `course_code` type is String, the code of the course. Must be unique.
 
 #### Response:
 
