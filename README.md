@@ -15,22 +15,22 @@ _* Click the endpoint to navigate to endpoint detail!_
 
 ### Admin
 
-| Category              | Method | Endpoint*                                                                                                       | Description                                 |
-|-----------------------|--------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| **Admin - Current**   | GET    | [`/api/admins`](#get-apiadmins)                                                                                 | Get current admin                           |
-| **Admin - Lecturer**  | POST   | [`/api/admins/users/lecturers`](#post-apiadminsuserslecturers)                                                  | Create a new lecturer                       |
-| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers`](#get-apiadminsuserslecturers)                                                   | Get all lecturers                           |
-| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers/{id}`](#get-apiadminsuserslecturersid)                                            | Get lecturer with certain id                |
-| **Admin - Student**   | POST   | [`/api/admins/users/students`](#post-apiadminsusersstudents)                                                    | Create a new student                        |
-| **Admin - Student**   | GET    | [`/api/admins/users/students`](#get-apiadminsusersstudents)                                                     | Get all students                            |
-| **Admin - Student**   | GET    | [`/api/admins/users/students/{id}`](#get-apiadminsusersstudentsid)                                              | Get student with certain id                 |
-| **Admin - User**      | GET    | [`/api/admins/users`](#get-apiadminsusers)                                                                      | Get all users                               |
-| **Admin - User**      | GET    | [`/api/admins/users/{id}`](#get-apiadminsusersid)                                                               | Get user with certain id                    |
-| **Admin - Faculty**   | POST   | [`/api/admins/academic/faculties`](#post-apiadminsacademicfaculties)                                            | Create a new faculty                        |
-| **Admin - Major**     | POST   | [`/api/admins/academic/faculties/{faculty_id}/majors`](#post-apiadminsacademicfacultiesfaculty_idmajors)        | Create a new major within a faculty         |
-| **Admin - Room**      | POST   | [`/api/admins/academic/deparments/{department_id}/rooms`](#post-apiadminsacademicdepartmentsdepartment_idrooms) | Create a new room within a department       |
-| **Admin - Course**    | POST   | [`/api/admins/academic/majors/{major_id}/courses`](#post-apiadminsacademicmajorsmajor_idcourses)                | Create a new course within a major          |
-| **Admin - Section**   | POST   | [`/api/admins/academic/courses/{course_id}/sections`](#post-apiadminsacademiccoursescourse_idsections)          | Create a new course section within a course |
+| Category              | Method | Endpoint*                                                                                                        | Description                                 |
+|-----------------------|--------|------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| **Admin - Current**   | GET    | [`/api/admins`](#get-apiadmins)                                                                                  | Get current admin                           |
+| **Admin - Lecturer**  | POST   | [`/api/admins/users/lecturers`](#post-apiadminsuserslecturers)                                                   | Create a new lecturer                       |
+| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers`](#get-apiadminsuserslecturers)                                                    | Get all lecturers                           |
+| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers/{id}`](#get-apiadminsuserslecturersid)                                             | Get lecturer with certain id                |
+| **Admin - Student**   | POST   | [`/api/admins/users/students`](#post-apiadminsusersstudents)                                                     | Create a new student                        |
+| **Admin - Student**   | GET    | [`/api/admins/users/students`](#get-apiadminsusersstudents)                                                      | Get all students                            |
+| **Admin - Student**   | GET    | [`/api/admins/users/students/{id}`](#get-apiadminsusersstudentsid)                                               | Get student with certain id                 |
+| **Admin - User**      | GET    | [`/api/admins/users`](#get-apiadminsusers)                                                                       | Get all users                               |
+| **Admin - User**      | GET    | [`/api/admins/users/{id}`](#get-apiadminsusersid)                                                                | Get user with certain id                    |
+| **Admin - Faculty**   | POST   | [`/api/admins/academic/faculties`](#post-apiadminsacademicfaculties)                                             | Create a new faculty                        |
+| **Admin - Major**     | POST   | [`/api/admins/academic/faculties/{faculty_id}/majors`](#post-apiadminsacademicfacultiesfaculty_idmajors)         | Create a new major within a faculty         |
+| **Admin - Room**      | POST   | [`/api/admins/academic/departments/{department_id}/rooms`](#post-apiadminsacademicdepartmentsdepartment_idrooms) | Create a new room within a department       |
+| **Admin - Course**    | POST   | [`/api/admins/academic/majors/{major_id}/courses`](#post-apiadminsacademicmajorsmajor_idcourses)                 | Create a new course within a major          |
+| **Admin - Section**   | POST   | [`/api/admins/academic/courses/{course_id}/sections`](#post-apiadminsacademiccoursescourse_idsections)           | Create a new course section within a course |
 
 ### Student
 
