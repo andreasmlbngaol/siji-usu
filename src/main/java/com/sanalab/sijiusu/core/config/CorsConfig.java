@@ -16,7 +16,7 @@ public class CorsConfig {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
                     .allowedOrigins(
-                        "http://localhost:5178",
+                        "http://localhost:3000",
                         "https://andreasmlbngaol.github.io"
                     )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
