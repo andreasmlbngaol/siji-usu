@@ -1,5 +1,6 @@
 package com.sanalab.sijiusu.auth.component;
 
+import com.sanalab.sijiusu.auth.data.Role;
 import com.sanalab.sijiusu.auth.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -7,13 +8,15 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.lang.NonNull;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.List;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -40,10 +43,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         if(token != null && jwtService.validateAccessToken(token)) {
             long userId = jwtService.getUserIdFromToken(token);
+            Role role = jwtService.getRoleFromToken(token);
+
+            List<GrantedAuthority> authorities = List.of(
+                new SimpleGrantedAuthority("ROLE_" + role) // Spring butuh prefix "ROLE_"
+            );
+
             var auth = new UsernamePasswordAuthenticationToken(
                 userId,
                 null,
-                Collections.emptyList()
+                authorities
             );
             SecurityContextHolder.getContext().setAuthentication(auth);
 

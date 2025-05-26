@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(Routing.ADMINS_ACADEMIC_DEPARTMENTS)
 public class AdminRoomController {
@@ -34,4 +36,33 @@ public class AdminRoomController {
         );
     }
 
+    public record RoomDto(
+        Long id,
+        String name
+    ) { }
+
+    @GetMapping("/{departmentId}" + Routing.ROOMS)
+    public List<RoomDto> getRoomsByDepartmentId(
+        @PathVariable("departmentId") Long departmentId
+    ) {
+        return adminRoomService.getRoomsByDepartmentId(departmentId);
+    }
+
+    public record UpdateRoomPayload(
+        @NotNull String name
+    ) { }
+
+    @PatchMapping("/{departmentId}" + Routing.ROOMS + "/{roomId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateRoom(
+        @PathVariable("departmentId") Long departmentId,
+        @PathVariable("roomId") Long roomId,
+        @Valid @RequestBody UpdateRoomPayload roomDto
+    ) {
+        adminRoomService.updateRoom(
+            roomId,
+            departmentId,
+            roomDto.name()
+        );
+    }
 }

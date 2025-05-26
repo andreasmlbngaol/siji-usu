@@ -78,6 +78,7 @@ public class JwtService {
         return validateToken(token, "access");
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean validateRefreshToken(String token) {
         return validateToken(token, "refresh");
     }
@@ -120,6 +121,16 @@ public class JwtService {
             return Long.parseLong(claims.getSubject());
         } catch (Exception ignored) {
             return 0L;
+        }
+    }
+
+    public Role getRoleFromToken(String token) {
+        Claims claims = parseAllClaims(token);
+        if(claims == null) throw responseException(401, "Invalid token");
+        try {
+            return Role.valueOf((String) claims.get("role"));
+        } catch (Exception ignored) {
+            throw responseException(401, "Invalid token");
         }
     }
 }

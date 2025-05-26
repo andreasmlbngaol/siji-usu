@@ -25,7 +25,8 @@ public class Room {
     @JoinColumn(name = "department_id")
     private Major department;
 
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
+    // Then course will be null.
+    @OneToMany(mappedBy = "room", cascade = { CascadeType.PERSIST }, fetch = FetchType.LAZY)
     private List<CourseSection> courseSections = new ArrayList<>();
 
     public Long getId() {

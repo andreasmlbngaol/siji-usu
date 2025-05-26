@@ -85,7 +85,7 @@ public class AuthController {
         String refreshToken;
 
         if(isWeb) {
-            refreshToken = extractRefreshToken(request.getCookies());
+            refreshToken = extractRefreshTokenFromCookies(request.getCookies());
             if( refreshToken == null) {
                 throw responseException(HttpStatus.BAD_REQUEST, "Refresh token is missing in cookies");
             }
@@ -112,7 +112,7 @@ public class AuthController {
         String refreshToken;
 
         if (isWeb) {
-            refreshToken = extractRefreshToken(request.getCookies());
+            refreshToken = extractRefreshTokenFromCookies(request.getCookies());
             if (refreshToken == null) {
                 throw responseException(HttpStatus.BAD_REQUEST, "Refresh token is missing in cookies");
             }
@@ -145,7 +145,20 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    private String extractRefreshToken(Cookie[] cookies) {
+    public record ChangePasswordPayload(
+        @NotNull String oldPassword,
+        @NotNull String newPassword
+    ) { }
+
+    @PatchMapping(Routing.PASSWORD)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void changePassword(
+        @Valid @RequestBody ChangePasswordPayload payload
+    ) {
+        authService.changePassword(payload.oldPassword, payload.newPassword);
+    }
+
+    private String extractRefreshTokenFromCookies(Cookie[] cookies) {
         if (cookies == null) return null;
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("refresh_token")) {

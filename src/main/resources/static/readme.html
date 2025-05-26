@@ -1,0 +1,559 @@
+<h1 id="endpoints">Endpoints</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p><em>* Click the endpoint to navigate to endpoint detail!</em></p>
+<h3 id="authentication">Authentication</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Method</th>
+        <th>Endpoint*</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>Authentication</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiauthlogin"><code>/api/auth/login</code></a></td>
+        <td>Login and obtain access &amp; refresh tokens</td>
+    </tr>
+    <tr>
+        <td><strong>Authentication</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiauthrefresh"><code>/api/auth/refresh</code> </a></td>
+        <td>Refresh access token using a refresh token</td>
+    </tr>
+    <tr>
+        <td><strong>Authentication</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiauthlogout"><code>/api/auth/logout</code></a></td>
+        <td>Logout and invalidate the refresh token</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Admin</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Method</th>
+        <th>Endpoint*</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>Admin - Current</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadmins"><code>/api/admins</code></a></td>
+        <td>Get current admin</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Lecturer</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsuserslecturers"><code>/api/admins/users/lecturers</code></a></td>
+        <td>Create a new lecturer</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Lecturer</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadminsuserslecturers"><code>/api/admins/users/lecturers</code></a></td>
+        <td>Get all lecturers</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Lecturer</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadminsuserslecturersid"><code>/api/admins/users/lecturers/{id}</code></a></td>
+        <td>Get lecturer with certain id</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Student</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsusersstudents"><code>/api/admins/users/students</code></a></td>
+        <td>Create a new student</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Student</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadminsusersstudents"><code>/api/admins/users/students</code></a></td>
+        <td>Get all students</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Student</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadminsusersstudentsid"><code>/api/admins/users/students/{id}</code></a></td>
+        <td>Get student with certain id</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - User</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadminsusers"><code>/api/admins/users</code></a></td>
+        <td>Get all users</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - User</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apiadminsusersid"><code>/api/admins/users/{id}</code></a></td>
+        <td>Get user with certain id</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Faculty</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsacademicfaculties"><code>/api/admins/academic/faculties</code></a></td>
+        <td>Create a new faculty</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Major</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsacademicfacultiesfaculty_idmajors"><code>/api/admins/academic/faculties/{faculty_id}/majors</code></a></td>
+        <td>Create a new major within a faculty</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Room</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsacademicdepartmentsdepartment_idrooms"><code>/api/admins/academic/departments/{department_id}/rooms</code></a></td>
+        <td>Create a new room within a department</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Course</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsacademicmajorsmajor_idcourses"><code>/api/admins/academic/majors/{major_id}/courses</code></a></td>
+        <td>Create a new course within a major</td>
+    </tr>
+    <tr>
+        <td><strong>Admin - Section</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apiadminsacademiccoursescourse_idsections"><code>/api/admins/academic/courses/{course_id}/sections</code></a></td>
+        <td>Create a new course section within a course</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Student</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Method</th>
+        <th>Endpoint*</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>Student - Current</strong></td>
+        <td>GET</td>
+        <td><a href="#get-apistudents"><code>/api/students</code></a></td>
+        <td>Get current student</td>
+    </tr>
+    <tr>
+        <td><strong>Student - Section</strong></td>
+        <td>POST</td>
+        <td><a href="#post-apistudentssections"><code>/api/students/sections</code></a></td>
+        <td>Enroll to a course section</td>
+    </tr>
+    </tbody>
+</table>
+<h2>Authentication</h2>
+<h3 id="post-apiauthlogin"><a href="#endpoints"><code>POST /api/auth/login</code></a></h3>
+<p>This endpoint is used to authenticate a user and get an JWT access token and refresh token.
+    The access token is used to authenticate requests to protected resources, while the refresh token can be used to get a new access token when the current one expires.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"identifier"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>identifier</code>type is String, can be either an email, NIM, NIP, or NIDN.</li>
+    <li><code>password</code> type is String, the password of the user.</li>
+</ul>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"access_token"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"refresh_token"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>access_token</code> type is String, the JWT access token. Valid for 15 minutes.</li>
+    <li><code>refresh_token</code> type is String, the JWT refresh token. Valid for 7 days.</li>
+</ul>
+<hr>
+<h3 id="post-apiauthrefresh"><a href="#endpoints"><code>POST /api/auth/refresh</code></a></h3>
+<p>This endpoint is used to refresh the access token using the refresh token.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"refresh_token"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>refresh_token</code> type is String, the JWT refresh token.</li>
+</ul>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"access_token"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"refresh_token"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>access_token</code> type is String, the JWT access token. Valid for 15 minutes.</li>
+    <li><code>refresh_token</code> type is String, the JWT refresh token. Valid for 7 days.</li>
+</ul>
+<hr>
+<h3 id="post-apiauthlogout"><a href="#endpoints"><code>POST /api/auth/logout</code></a></h3>
+<p><code>Authorization: Bearer {access_token}</code></p>
+<p>This endpoint is used to log out the user by invalidating the refresh token.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"refresh_token"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>refresh_token</code> type is String, the JWT refresh token.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 204 (No Content).</p>
+<h2>Admin</h2>
+<p><code>Authorization: Bearer {access_token}</code></p>
+<h3 id="get-apiadmins"><a href="#endpoints"><code>GET /api/admins</code></a></h3>
+<p>This endpoint is used to get the current admin&#39;s information.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nip"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<hr>
+<h3 id="post-apiadminsuserslecturers"><a href="#endpoints"><code>POST /api/admins/users/lecturers</code></a></h3>
+<p>This endpoint is used to create a new lecturer.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nip"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nidn"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"department_id"</span>: <span class="hljs-number">23</span>
+}
+</code></pre>
+<ul>
+    <li><code>name</code> type is String, the name of the lecturer.</li>
+    <li><code>email</code> type is String, the email of the lecturer. Must be unique.</li>
+    <li><code>password</code> type is String, the password of the lecturer.</li>
+    <li><code>nip</code> type is String, the NIP of the lecturer. Must be 18 digits and unique.</li>
+    <li><code>nidn</code> type is String, the NIDN/Lecturer ID of the lecturer. Must be 10 digits and unique.</li>
+    <li><code>department_id</code> type is Long, the ID of the department.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h3 id="get-apiadminsuserslecturers"><a href="#endpoints"><code>GET /api/admins/users/lecturers</code></a></h3>
+<p>This endpoint is used to get all lecturers.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<h4>Response:</h4>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"nip"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"nidn"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"faculty"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"department"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"advised_students"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"nim"</span>: <span class="hljs-string">"string"</span>
+      }
+    ],
+    <span class="hljs-attr">"courses_taught"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+        <span class="hljs-attr">"course_name"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"section_name"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"room"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"lecturer"</span>: <span class="hljs-string">"string"</span>
+      }
+    ]
+  }
+]
+</code></pre>
+<hr>
+<h3 id="get-apiadminsuserslecturersid"><a href="#endpoints"><code>GET /api/admins/users/lecturers/{id}</code></a></h3>
+<p>This endpoint is used to get a lecturer with a certain ID.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<ul>
+    <li><code>{id}</code> type is Long, the ID of the lecturer.</li>
+</ul>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nip"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nidn"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"faculty"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"department"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"advised_students"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"nim"</span>: <span class="hljs-string">"string"</span>
+    }
+  ],
+  <span class="hljs-attr">"courses_taught"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+      <span class="hljs-attr">"course_name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"section_name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"room"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"lecturer"</span>: <span class="hljs-string">"string"</span>
+    }
+  ]
+}
+</code></pre>
+<hr>
+<h3 id="post-apiadminsusersstudents"><a href="#endpoints"><code>POST /api/admins/users/students</code></a></h3>
+<p>This endpoint is used to create a new student.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"password"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nim"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"major_id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"academic_advisor_id"</span>: <span class="hljs-number">23</span>
+}
+</code></pre>
+<ul>
+    <li><code>name</code> type is String, the name of the student.</li>
+    <li><code>email</code> type is String, the email of the student. Must be unique.</li>
+    <li><code>password</code> type is String, the password of the student.</li>
+    <li><code>nim</code> type is String, the NIM/student ID of the student. Must be 9 digits and unique.</li>
+    <li><code>major_id</code> type is Long, the ID of the major/department.</li>
+    <li><code>academic_advisor_id</code> type is Long, the ID of the academic advisor.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h3 id="get-apiadminsusersstudents"><a href="#endpoints"><code>GET /api/admins/users/students</code></a></h3>
+<p>This endpoint is used to get all students.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<h3>Response:</h3>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"nim"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"faculty"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"major"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"academic_advisor"</span>: {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+    },
+    <span class="hljs-attr">"courses_taken"</span>: [
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+        <span class="hljs-attr">"course_name"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"section_name"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"room"</span>: <span class="hljs-string">"string"</span>,
+        <span class="hljs-attr">"lecturer"</span>: <span class="hljs-string">"string"</span>
+      }
+    ]
+  }
+]
+</code></pre>
+<hr>
+<h3 id="get-apiadminsusersstudentsid"><a href="#endpoints"><code>GET /api/admins/users/students/{id}</code></a></h3>
+<p>This endpoint is used to get a student with a certain ID.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<ul>
+    <li><code>{id}</code> type is Long, the ID of the student.</li>
+</ul>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nim"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"faculty"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"major"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"academic_advisor"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+  },
+  <span class="hljs-attr">"courses_taken"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+      <span class="hljs-attr">"course_name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"section_name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"room"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"lecturer"</span>: <span class="hljs-string">"string"</span>
+    }
+  ]
+}
+</code></pre>
+<hr>
+<h3 id="get-apiadminsusers"><a href="#endpoints"><code>GET /api/admins/users</code></a></h3>
+<p>This endpoint is used to get all users (admins, lecturers, and students).</p>
+<h4>Payload:</h4>
+<p>none</p>
+<h4>Response:</h4>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+    <span class="hljs-attr">"role"</span>: <span class="hljs-string">"string"</span>
+  }
+]
+</code></pre>
+<hr>
+<h3 id="get-apiadminsusersid"><a href="#endpoints"><code>GET /api/admins/users/{id}</code></a></h3>
+<p>This endpoint is used to get a user with a certain ID.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<ul>
+    <li><code>{id}</code> type is Long, the ID of the user.</li>
+</ul>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"role"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<hr>
+<h3 id="post-apiadminsacademicfaculties"><a href="#endpoints"><code>POST /api/admins/academic/faculties</code></a></h3>
+<p>This endpoint is used to create a new faculty.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"faculty_code"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>name</code> type is String, the name of the faculty.</li>
+    <li><code>faculty_code</code> type is String, the code of the faculty. Must be 2 digits and unique.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h3 id="post-apiadminsacademicfacultiesfaculty_idmajors"><a href="#endpoints"><code>POST /api/admins/academic/faculties/{faculty_id}/majors</code></a></h3>
+<p>This endpoint is used to create a new major/department.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"major_code"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>{faculty_id}</code> type is Long, the ID of the faculty.</li>
+    <li><code>name</code> type is String, the name of the major.</li>
+    <li><code>major_code</code> type is String, the code of the major. Must be unique.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h3 id="post-apiadminsacademicdepartmentsdepartment_idrooms"><a href="#endpoints"><code>POST /api/admins/academic/departments/{department_id}/rooms</code></a></h3>
+<p>This endpoint is used to create a new room in a department.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>{department_id}</code> type is Long, the ID of the department.</li>
+    <li><code>name</code> type is String, the name of the room. Must be unique.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h3 id="post-apiadminsacademicmajorsmajor_idcourses"><a href="#endpoints"><code>POST /api/admins/academic/majors/{major_id}/courses</code></a></h3>
+<p>This endpoint is used to create a new course.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+}
+</code></pre>
+<ul>
+    <li><code>{major_id}</code> type is Long, the ID of the major/department.</li>
+    <li><code>name</code> type is String, the name of the course.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h3 id="post-apiadminsacademiccoursescourse_idsections"><a href="#endpoints"><code>POST /api/admins/academic/courses/{course_id}/sections</code></a></h3>
+<p>This endpoint is used to create a new course section.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"lecturer_id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"room_id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"course_id"</span>: <span class="hljs-number">23</span>
+}
+</code></pre>
+<ul>
+    <li><code>{course_id}</code> type is Long, the ID of the course.</li>
+    <li><code>name</code> type is String, the name of the course section.</li>
+    <li><code>lecturer_id</code> type is Long, the ID of the lecturer.</li>
+    <li><code>room_id</code> type is Long, the ID of the room.</li>
+    <li><code>course_id</code> type is Long, the ID of the course.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 201 (Created).</p>
+<hr>
+<h2>Student</h2>
+<p><code>Authorization: Bearer {access_token}</code></p>
+<h3 id="get-apistudents"><a href="#endpoints"><code>GET /api/students</code></a></h3>
+<p>This endpoint is used to get the current student&#39;s information.</p>
+<h4>Payload:</h4>
+<p>none</p>
+<h4>Response:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"email"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"nim"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"faculty"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"major"</span>: <span class="hljs-string">"string"</span>,
+  <span class="hljs-attr">"academic_advisor"</span>: {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"string"</span>
+  },
+  <span class="hljs-attr">"courses_taken"</span>: [
+    {
+      <span class="hljs-attr">"id"</span>: <span class="hljs-number">23</span>,
+      <span class="hljs-attr">"course_name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"section_name"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"room"</span>: <span class="hljs-string">"string"</span>,
+      <span class="hljs-attr">"lecturer"</span>: <span class="hljs-string">"string"</span>
+    }
+  ]
+}
+</code></pre>
+<hr>
+<h3 id="post-apistudentssections"><a href="#endpoints"><code>POST /api/students/sections</code></a></h3>
+<p>This endpoint is used to enroll a student to a course section.</p>
+<h4>Payload:</h4>
+<pre><code class="lang-json">{
+  <span class="hljs-attr">"section_id"</span>: <span class="hljs-number">23</span>
+}
+</code></pre>
+<ul>
+    <li><code>section_id</code> type is Long, the ID of the course section.</li>
+</ul>
+<h4>Response:</h4>
+<p>empty response with status code 204 (No Content).</p>
+<hr>

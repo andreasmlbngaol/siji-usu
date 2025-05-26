@@ -16,7 +16,11 @@ public class CorsConfig {
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
                     .allowedOriginPatterns(
-                        "http://localhost:*"
+                        "http://localhost:*",
+                        "https://*.andreasmlbngaol.site",
+                        "https://andreasmlbngaol.site:*",
+                        "http://*.andreasmlbngaol.site",
+                        "http://andreasmlbngaol.site:*"
                     )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")

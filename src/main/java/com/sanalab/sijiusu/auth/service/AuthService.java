@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -136,6 +137,31 @@ public class AuthService {
 
         refreshTokenRepository.deleteByUserIdAndHashedToken(user.getId(), hashed);
         return storeAndGetToken(user.getId(), user.getRole(), refreshToken);
+    }
+
+    public void changePassword(String oldPassword, String newPassword) {
+        if (oldPassword == null || oldPassword.isBlank() || newPassword == null || newPassword.isBlank()) {
+            throw responseException(HttpStatus.BAD_REQUEST, "Old and new passwords are required");
+        }
+
+        Long userId;
+        try {
+            userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (ClassCastException e) {
+            throw responseException(HttpStatus.UNAUTHORIZED, "Invalid authentication context");
+        }
+
+        var user = userRepository.findById(userId).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "User not found")
+        );
+
+        if (!hashEncoder.matches(oldPassword, user.getPasswordHashed())) {
+            throw responseException(HttpStatus.UNAUTHORIZED, "Old password is incorrect");
+        }
+
+        user.setPasswordHashed(hashEncoder.encode(newPassword));
+        user.setUpdatedAt(Instant.now());
+        userRepository.save(user);
     }
 
     private TokenPair storeAndGetToken(

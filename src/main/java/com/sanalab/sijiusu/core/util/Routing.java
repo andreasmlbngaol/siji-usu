@@ -5,6 +5,7 @@ public class Routing {
     public static final String LOGIN = "/login";
     public static final String REFRESH = "/refresh";
     public static final String LOGOUT = "/logout";
+    public static final String PASSWORD = "/password";
 
     public static final String STUDENTS = "/students";
     public static final String LECTURERS = "/lecturers";

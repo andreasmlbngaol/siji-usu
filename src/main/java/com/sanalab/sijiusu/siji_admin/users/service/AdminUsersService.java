@@ -14,11 +14,13 @@ import com.sanalab.sijiusu.siji_lecturer.service.LecturerConverter;
 import com.sanalab.sijiusu.siji_student.database.model.Student;
 import com.sanalab.sijiusu.siji_student.database.repository.StudentRepository;
 import com.sanalab.sijiusu.siji_student.service.StudentConverter;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 import static com.sanalab.sijiusu.core.util.ResponseHelper.responseException;
@@ -54,11 +56,12 @@ public class AdminUsersService {
         String password,
         String nim,
         Long majorId,
-        Long academicAdvisorId
+        Long academicAdvisorId,
+        Integer year
     ) {
         // Validate the payload
         if (name == null || email == null || password == null ||
-            nim == null || majorId == null || academicAdvisorId == null) {
+            nim == null || majorId == null || academicAdvisorId == null || year == null) {
             throw responseException(HttpStatus.BAD_REQUEST, "Missing required fields");
         }
 
@@ -86,6 +89,7 @@ public class AdminUsersService {
         student.setMajor(major);
         student.setAcademicAdvisor(academicAdvisor);
         student.setRole(Role.Student);
+        student.setYear(year);
 
         studentRepository.save(student);
     }
@@ -132,11 +136,53 @@ public class AdminUsersService {
             .map(StudentConverter::toDto)
             .toList();
     }
+
     public AdminUsersController.StudentDto getStudentById(Long id) {
         var student = studentRepository.findById(id).orElseThrow(() ->
             responseException(HttpStatus.NOT_FOUND, "Student not found")
         );
         return StudentConverter.toDto(student);
+    }
+
+    public List<AdminUsersController.StudentDto> getStudentsByNameLike(String name) {
+        return studentRepository.findAllByNameContainingIgnoreCase(name)
+            .stream()
+            .map(StudentConverter::toDto)
+            .toList();
+    }
+
+    @Transactional
+    public void updateStudent(
+        Long id,
+        String name,
+        String email,
+        String nim,
+        Long academicAdvisorId
+    ) {
+        // Check if the student exists
+        var student = studentRepository.findById(id).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Student not found")
+        );
+        if(name != null && !name.isBlank()) student.setName(name);
+        if(email != null && !email.isBlank()) {
+            if (userRepository.existsByEmail(email))
+                throw responseException(HttpStatus.CONFLICT, "Email already exists");
+            student.setEmail(email);
+        }
+        if(nim != null && !nim.isBlank()) {
+            if(studentRepository.existsByNim(nim))
+                throw responseException(HttpStatus.CONFLICT, "NIM already exists");
+            student.setNim(nim);
+        }
+        if(academicAdvisorId != null) {
+            var academicAdvisor = lecturerRepository.findById(academicAdvisorId).orElseThrow(() ->
+                responseException(HttpStatus.NOT_FOUND, "Academic advisor not found")
+            );
+            student.setAcademicAdvisor(academicAdvisor);
+        }
+
+        student.setUpdatedAt(Instant.now());
+        studentRepository.save(student);
     }
 
     public List<AdminUsersController.LecturerDto> getAllLecturers() {
@@ -145,11 +191,53 @@ public class AdminUsersService {
             .map(LecturerConverter::toDto)
             .toList();
     }
+
     public AdminUsersController.LecturerDto getLecturerById(Long id) {
         var teacher = lecturerRepository.findById(id).orElseThrow(() ->
             responseException(HttpStatus.NOT_FOUND, "Lecturer not found")
         );
         return LecturerConverter.toDto(teacher);
+    }
+
+    public List<AdminUsersController.LecturerDto> getLecturersByNameLike(String name) {
+        return lecturerRepository.findAllByNameContainingIgnoreCase(name)
+            .stream()
+            .map(LecturerConverter::toDto)
+            .toList();
+    }
+
+    @Transactional
+    public void updateLecturer(
+        Long id,
+        String name,
+        String email,
+        String nip,
+        String nidn
+    ) {
+        // Check if the lecturer exists
+        var lecturer = lecturerRepository.findById(id).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Lecturer not found")
+        );
+
+        if(name != null && !name.isBlank()) lecturer.setName(name);
+        if(email != null && !email.isBlank()) {
+            if (userRepository.existsByEmail(email))
+                throw responseException(HttpStatus.CONFLICT, "Email already exists");
+            lecturer.setEmail(email);
+        }
+        if(nip != null && !nip.isBlank()) {
+            if(lecturerRepository.existsByNip(nip))
+                throw responseException(HttpStatus.CONFLICT, "NIP already exists");
+            lecturer.setNip(nip);
+        }
+        if(nidn != null && !nidn.isBlank()) {
+            if(lecturerRepository.existsByNidn(nidn))
+                throw responseException(HttpStatus.CONFLICT, "NIDN already exists");
+            lecturer.setNidn(nidn);
+        }
+
+        lecturer.setUpdatedAt(Instant.now());
+        lecturerRepository.save(lecturer);
     }
 
     public List<AdminUsersController.UserDto> getAllUsers() {
