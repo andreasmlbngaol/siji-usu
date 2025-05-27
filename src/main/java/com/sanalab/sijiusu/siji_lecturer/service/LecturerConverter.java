@@ -14,7 +14,7 @@ public class LecturerConverter {
 
         var sections = lecturer.getCourseSections()
             .stream()
-            .map(CourseSectionConverter::toDto)
+            .map(CourseSectionConverter::toSectionTakenDto)
             .toList();
 
         return new AdminUsersController.LecturerDto(

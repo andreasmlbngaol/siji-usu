@@ -1,0 +1,55 @@
+Student:
+- Home (Kelas yang sudah diambil)
+- Enroll (Tampilkan daftar kelas yang bisa diambil)
+- Profile (Isinya bisa change password)
+- Logout
+
+Lecturer:
+- Home (Tampilkan kelas yang diajar)
+- Enroll (Tampilkan kelas yang bisa diajar [section.lecturer == null])
+- Profile (Sama)
+- Logout
+
+Admin:
+- Students:
+    - Add
+    - Search
+    - Update Info
+
+- Lecturer:
+    - Add
+    - Search
+    - Update Info
+
+- Academic:
+    - Faculty:
+	- Add
+	- Search
+	- Update Info
+	- Major List
+
+    - Major:
+	- Add
+	- Search
+	- Update Info
+	- Room List
+	- Course List
+
+    - Room:
+	- Add
+	- Update
+	- Delete
+
+    - Course:
+	- Add
+	- Update
+	- Section List
+	- Add Section
+
+    - Section:
+	- Update
+	- Assign Room
+	- Assign Lecturer
+
+- Profile
+- Logout

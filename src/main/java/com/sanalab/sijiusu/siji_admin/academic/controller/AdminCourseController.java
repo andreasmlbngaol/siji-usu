@@ -3,6 +3,7 @@ package com.sanalab.sijiusu.siji_admin.academic.controller;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sanalab.sijiusu.core.util.Routing;
 import com.sanalab.sijiusu.siji_admin.academic.service.AdminCourseService;
+import com.sanalab.sijiusu.siji_admin.users.controller.AdminUsersController;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,8 @@ public class AdminCourseController {
 
     public record AddCoursePayload(
         @NotNull String name
-    ) { }
+    ) {
+    }
 
     @PostMapping(Routing.MAJORS + "/{majorId}" + Routing.COURSES)
     @ResponseStatus(HttpStatus.CREATED)
@@ -43,14 +45,16 @@ public class AdminCourseController {
         String name,
         String lecturer,
         String room
-    ) { }
+    ) {
+    }
 
     public record CourseDto(
         Long id,
         String name,
         @JsonProperty("course_sections")
         List<CourseSectionSumDto> courseSections
-    ) { }
+    ) {
+    }
 
     @GetMapping(Routing.MAJORS + "/{majorId}" + Routing.COURSES)
     public List<CourseDto> getCoursesByMajor(
@@ -76,7 +80,8 @@ public class AdminCourseController {
         Long lecturerId,
         @JsonProperty("room_id")
         Long roomId
-    ) { }
+    ) {
+    }
 
     @PostMapping(Routing.COURSES + "/{courseId}" + Routing.SECTIONS)
     @ResponseStatus(HttpStatus.CREATED)
@@ -92,4 +97,17 @@ public class AdminCourseController {
         );
     }
 
+    public record CourseSectionDto(
+        Long id,
+        String name,
+        AdminUsersController.LecturerSumDto lecturer,
+        AdminRoomController.RoomDto room
+    ) { }
+
+    @GetMapping(Routing.COURSES + Routing.SECTIONS + "/{sectionId}")
+    public CourseSectionDto getCourseSectionById(
+        @PathVariable Long sectionId
+    ) {
+        return adminCourseService.getCourseSectionById(sectionId);
+    }
 }

@@ -1,6 +1,7 @@
 package com.sanalab.sijiusu.siji_admin.academic.service;
 
 import com.sanalab.sijiusu.core.converter.CourseConverter;
+import com.sanalab.sijiusu.core.converter.CourseSectionConverter;
 import com.sanalab.sijiusu.core.database.model.Course;
 import com.sanalab.sijiusu.core.database.model.CourseSection;
 import com.sanalab.sijiusu.core.database.model.Major;
@@ -151,5 +152,19 @@ public class AdminCourseService {
         section.setRoom(room);
 
         sectionRepository.save(section);
+    }
+
+    public AdminCourseController.CourseSectionDto getCourseSectionById(Long sectionId) {
+        // Validate the sectionId
+        if (sectionId == null) {
+            throw responseException(HttpStatus.BAD_REQUEST, "Missing required fields");
+        }
+
+        // Check if the course section exists
+        CourseSection section = sectionRepository.findById(sectionId).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Course section not found")
+        );
+
+        return CourseSectionConverter.toDto(section);
     }
 }

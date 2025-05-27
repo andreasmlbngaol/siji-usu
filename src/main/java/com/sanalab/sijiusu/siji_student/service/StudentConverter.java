@@ -10,7 +10,7 @@ public class StudentConverter {
         var academicAdvisor = LecturerConverter.toSumDto(student.getAcademicAdvisor());
         var sections = student.getCourseSections()
             .stream()
-            .map(CourseSectionConverter::toDto)
+            .map(CourseSectionConverter::toSectionTakenDto)
             .toList();
 
         return new AdminUsersController.StudentDto(
