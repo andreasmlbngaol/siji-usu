@@ -1,6 +1,7 @@
 package com.sanalab.sijiusu.core.converter;
 
 import com.sanalab.sijiusu.core.database.model.CourseSection;
+import com.sanalab.sijiusu.siji_admin.academic.controller.AdminCourseController;
 import com.sanalab.sijiusu.siji_admin.users.controller.AdminUsersController;
 
 public class CourseSectionConverter {
@@ -14,6 +15,15 @@ public class CourseSectionConverter {
             section.getName(),
             room,
             lecturer
+        );
+    }
+
+    public static AdminCourseController.CourseSectionSumDto toSumDto(CourseSection section) {
+        return new AdminCourseController.CourseSectionSumDto(
+            section.getId(),
+            section.getName(),
+            section.getLecturer() != null ? section.getLecturer().getName() : null,
+            section.getRoom() != null ? section.getRoom().getName() : null
         );
     }
 }

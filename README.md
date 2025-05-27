@@ -120,6 +120,32 @@ This endpoint is used to log out the user by invalidating the refresh token.
 
 empty response with status code 204 (No Content).
 
+***
+
+### [`PATCH /api/auth/password`](#endpoints)
+
+`Authorization: Bearer {access_token}`
+
+This endpoint is used to change the password of the current user.
+
+#### Payload:
+
+```json
+{
+  "old_password": "string",
+  "new_password": "string"
+}
+```
+
+- `old_password` type is String, the current password of the user.
+- `new_password` type is String, the new password of the user. Must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.
+
+#### Response:
+
+empty response with status code 204 (No Content).
+
+***
+
 ## Admin
 
 `Authorization: Bearer {access_token}`
@@ -259,6 +285,27 @@ none
 
 ***
 
+### [`PATH /api/admins/users/lecturers/{id}`](#endpoints)
+
+This endpoint is used to update information of a lecturer with a certain ID.
+
+#### Payload:
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "nip": "string",
+  "nidn": "string"
+}
+```
+
+- `{id}` type is Long, the ID of the lecturer.
+- `name` type is String (NULLABLE), the name of the lecturer.
+- `email` type is String (NULLABLE), the email of the lecturer. Must be unique.
+- `nip` type is String (NULLABLE), the NIP of the lecturer. Must be 18 digits and unique.
+- `nidn` type is String (NULLABLE), the NIDN/Lecturer ID of the lecturer. Must be 10 digits and unique.
+
 ### [`POST /api/admins/users/students`](#endpoints)
 
 This endpoint is used to create a new student.
@@ -365,6 +412,27 @@ none
 
 ***
 
+### [`PATCH /api/admins/users/students/{id}`](#endpoints)
+
+This endpoint is used to update information of a student with a certain ID.
+
+#### Payload:
+
+```json
+{
+  "name": "string",
+  "email": "string",
+  "nim": "string",
+  "academic_advisor_id": 23
+}
+```
+
+- `{id}` type is Long, the ID of the student.
+- `name` type is String (NULLABLE), the name of the student.
+- `email` type is String (NULLABLE), the email of the student. Must be unique.
+- `nim` type is String (NULLABLE), the NIM/student ID of the student. Must be 9 digits and unique.
+- `academic_advisor_id` type is Long (NULLABLE), the ID of the academic advisor.
+
 ### [`GET /api/admins/users`](#endpoints)
 
 This endpoint is used to get all users (admins, lecturers, and students).
@@ -433,6 +501,87 @@ empty response with status code 201 (Created).
 
 ***
 
+### [`GET /api/admins/academic/faculties`](#endpoints)
+
+This endpoint is used to get all faculties.
+
+#### Payload:
+
+none
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string",
+    "code": "string",
+    "departments": [
+      {
+        "id": 23,
+        "name": "string",
+        "code": "string"
+      }
+    ]
+  }
+]
+```
+
+***
+
+### [`GET /api/admins/academic/faculties/{faculty_id}`](#endpoints)
+
+This endpoint is used to get a faculty with a certain ID.
+
+#### Payload:
+
+none
+
+- `{faculty_id}` type is Long, the ID of the faculty.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "code": "string",
+  "departments": [
+    {
+      "id": 23,
+      "name": "string",
+      "code": "string"
+    }
+  ]
+}
+```
+
+***
+
+### [`PATCH /api/admins/academic/faculties/{faculty_id}`](#endpoints)
+
+This endpoint is used to update information of a faculty with a certain ID.
+
+#### Payload:
+
+```json
+{
+  "name": "string",
+  "faculty_code": "string"
+}
+```
+
+- `{faculty_id}` type is Long, the ID of the faculty.
+- `name` type is String (NULLABLE), the name of the faculty.
+- `faculty_code` type is String (NULLABLE), the code of the faculty. Must be 2 digits and unique.
+
+#### Response:
+
+empty response with status code 204 (No Content).
+
+***
+
 ### [`POST /api/admins/academic/faculties/{faculty_id}/majors`](#endpoints)
 
 This endpoint is used to create a new major/department.
@@ -456,6 +605,98 @@ empty response with status code 201 (Created).
 
 ***
 
+### [`GET /api/admins/academic/faculties/majors?name=string`](#endpoints)
+
+This endpoint is used to get all majors/departments.
+
+#### Payload:
+
+none
+
+- `name` type is String (OPTIONAL), the name of the major/department to filter by.
+- If `name` is not provided, all majors/departments will be returned.
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string",
+    "code": "string",
+    "faculty": {
+      "id": 23,
+      "name": "string",
+      "code": "string"
+    },
+    "rooms": [
+      {
+        "id": 23,
+        "name": "string"
+      }
+    ]
+  }
+]
+```
+
+***
+
+### [`GET /api/admins/academic/faculties/majors/{major_id}`](#endpoints)
+
+This endpoint is used to get a major/department with a certain ID.
+
+#### Payload:
+
+none
+
+- `{major_id}` type is Long, the ID of the major/department.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "code": "string",
+  "faculty": {
+    "id": 23,
+    "name": "string",
+    "code": "string"
+  },
+  "rooms": [
+    {
+      "id": 23,
+      "name": "string"
+    }
+  ]
+}
+```
+
+***
+
+### [`PATCH /api/admins/academic/faculties/majors/{major_id}`](#endpoints)
+
+This endpoint is used to update information of a major/department with a certain ID.
+
+#### Payload:
+
+```json
+{
+  "name": "string",
+  "major_code": "string"
+}
+```
+
+- `{major_id}` type is Long, the ID of the major/department.
+- `name` type is String (NULLABLE), the name of the major/department.
+- `major_code` type is String (NULLABLE), the code of the major/department. Must be 2 digits. Unique per faculty.
+
+#### Response:
+
+empty response with status code 204 (No Content).
+
+***
+
 ### [`POST /api/admins/academic/departments/{department_id}/rooms`](#endpoints)
 
 This endpoint is used to create a new room in a department.
@@ -474,6 +715,51 @@ This endpoint is used to create a new room in a department.
 #### Response:
 
 empty response with status code 201 (Created).
+
+***
+
+### [`GET /api/admins/academic/departments/{department_id}/rooms`](#endpoints)
+
+This endpoint is used to get all rooms in a department.
+
+#### Payload:
+
+none
+
+- `{department_id}` type is Long, the ID of the department.
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string"
+  }
+]
+```
+
+***
+
+### [`PATCH /api/admins/academic/departments/{department_id}/rooms/{room_id}`](#endpoints)
+
+This endpoint is used to update information of a room in a department.
+
+#### Payload:
+
+```json
+{
+  "name": "string"
+}
+```
+
+- `{department_id}` type is Long, the ID of the department.
+- `{room_id}` type is Long, the ID of the room.
+- `name` type is String (NULLABLE), the name of the room. Must be unique.
+
+#### Response:
+
+empty response with status code 204 (No Content).
 
 ***
 

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -147,6 +148,10 @@ public class AuthController {
 
     public record ChangePasswordPayload(
         @NotNull String oldPassword,
+        @Pattern(
+            regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$",
+            message = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit."
+        )
         @NotNull String newPassword
     ) { }
 

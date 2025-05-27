@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(Routing.ADMINS_ACADEMIC)
 public class AdminCourseController {
@@ -33,6 +35,39 @@ public class AdminCourseController {
             payload.name,
             majorId
         );
+    }
+
+
+    public record CourseSectionSumDto(
+        Long id,
+        String name,
+        String lecturer,
+        String room
+    ) { }
+
+    public record CourseDto(
+        Long id,
+        String name,
+        @JsonProperty("course_sections")
+        List<CourseSectionSumDto> courseSections
+    ) { }
+
+    @GetMapping(Routing.MAJORS + "/{majorId}" + Routing.COURSES)
+    public List<CourseDto> getCoursesByMajor(
+        @PathVariable Long majorId,
+        @RequestParam(required = false, value = "name") String name
+    ) {
+        if (name != null) {
+            return adminCourseService.getCoursesByMajorAndName(majorId, name);
+        }
+        return adminCourseService.getCoursesByMajor(majorId);
+    }
+
+    @GetMapping(Routing.MAJORS + Routing.COURSES + "/{courseId}")
+    public CourseDto getCourseById(
+        @PathVariable Long courseId
+    ) {
+        return adminCourseService.getCourseById(courseId);
     }
 
     public record AddCourseSectionPayload(

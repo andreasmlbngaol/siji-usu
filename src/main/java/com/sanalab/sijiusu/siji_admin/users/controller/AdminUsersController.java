@@ -6,6 +6,7 @@ import com.sanalab.sijiusu.siji_admin.users.service.AdminUsersService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,10 @@ public class AdminUsersController {
     public record AddStudentPayload(
         @NotNull String name,
         @Email String email,
+        @Pattern(
+            regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$",
+            message = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit."
+        )
         @NotNull String password,
         @NotNull Integer year,
         @NotNull String nim,
@@ -115,6 +120,10 @@ public class AdminUsersController {
     public record AddLecturerPayload(
         @NotNull String name,
         @Email String email,
+        @Pattern(
+            regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$",
+            message = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit."
+        )
         @NotNull String password,
         @NotNull String nip,
         @NotNull String nidn,
