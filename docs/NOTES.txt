@@ -44,7 +44,7 @@ Admin:
 	- Add
 	- Update
 	- Section List
-	- Add Section
+	- Add a Section
 
     - Section:
 	- Update

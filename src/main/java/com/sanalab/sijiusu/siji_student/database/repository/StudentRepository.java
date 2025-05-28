@@ -10,4 +10,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Optional<Student> findByNim(String nim);
     List<Student> findAllByNameContainingIgnoreCase(String name);
     Boolean existsByNim(String nim);
+//    Optional<Long> findMajor_IdById(Long id);
 }
