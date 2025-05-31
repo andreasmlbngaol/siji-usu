@@ -32,11 +32,14 @@ public class CourseSectionConverter {
     public static AdminCourseController.CourseSectionDto toDto(CourseSection section) {
         AdminUsersController.LecturerSumDto lecturer = section.getLecturer() != null ? LecturerConverter.toSumDto(section.getLecturer()) : null;
         AdminRoomController.RoomDto room = section.getRoom() != null ? RoomConverter.toDto(section.getRoom()) : null;
+        AdminCourseController.CourseSumDto course = CourseConverter.toSumDto(section.getCourse());
+
         return new AdminCourseController.CourseSectionDto(
             section.getId(),
             section.getCourse().getName(),
             lecturer,
-            room
+            room,
+            course
         );
     }
 }

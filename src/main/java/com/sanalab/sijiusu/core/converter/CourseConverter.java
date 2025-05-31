@@ -15,4 +15,11 @@ public class CourseConverter {
             sections
         );
     }
+
+    public static AdminCourseController.CourseSumDto toSumDto(Course course) {
+        return new AdminCourseController.CourseSumDto(
+            course.getId(),
+            course.getName()
+        );
+    }
 }

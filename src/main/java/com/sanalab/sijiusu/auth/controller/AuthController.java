@@ -40,6 +40,8 @@ public class AuthController {
         String refreshToken
     ) {}
 
+    //    === LOGIN ===
+
     @PostMapping(Routing.LOGIN)
     public ResponseEntity<AuthService.TokenPair> login(
         @Valid @RequestBody LoginRequest body,
@@ -76,6 +78,9 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
+    //    === REFRESH ===
+
+
     @PostMapping(Routing.REFRESH)
     public ResponseEntity<AuthService.TokenPair> refresh(
         @RequestParam(value = "web", defaultValue = "false") boolean isWeb,
@@ -102,6 +107,8 @@ public class AuthController {
         if (isWeb) return createCookieResponse(tokenPair, response);
         return ResponseEntity.ok(tokenPair);
     }
+
+    //    === LOGOUT ===
 
     @PostMapping(Routing.LOGOUT)
     public ResponseEntity<Void> logout(

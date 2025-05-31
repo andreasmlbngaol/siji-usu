@@ -7,37 +7,65 @@ _* Click the endpoint to navigate to endpoint detail!_
 
 ### Authentication
 
-| Category              | Method | Endpoint*                                                                                                       | Description                                 |
-|-----------------------|--------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| **Authentication**    | POST   | [`/api/auth/login`](#post-apiauthlogin)                                                                         | Login and obtain access & refresh tokens    |
-| **Authentication**    | POST   | [`/api/auth/refresh` ](#post-apiauthrefresh)                                                                    | Refresh access token using a refresh token  |
-| **Authentication**    | POST   | [`/api/auth/logout`](#post-apiauthlogout)                                                                       | Logout and invalidate the refresh token     |
+| Category            | Method | Endpoint*                                      | Description                                |
+|---------------------|--------|------------------------------------------------|--------------------------------------------|
+| **Authentication**  | POST   | [`/api/auth/login`](#post-apiauthlogin)        | Login and obtain access & refresh tokens   |
+| **Authentication**  | POST   | [`/api/auth/refresh` ](#post-apiauthrefresh)   | Refresh access token using a refresh token |
+| **Authentication**  | POST   | [`/api/auth/logout`](#post-apiauthlogout)      | Logout and invalidate the refresh token    |
+| **Change Password** | PATCH  | [`/api/auth/password`](#patch-apiauthpassword) | Change password                            |
 
-### Admin
+### Admin - User Management
 
-| Category              | Method | Endpoint*                                                                                                        | Description                                 |
-|-----------------------|--------|------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
-| **Admin - Current**   | GET    | [`/api/admins`](#get-apiadmins)                                                                                  | Get current admin                           |
-| **Admin - Lecturer**  | POST   | [`/api/admins/users/lecturers`](#post-apiadminsuserslecturers)                                                   | Create a new lecturer                       |
-| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers`](#get-apiadminsuserslecturers)                                                    | Get all lecturers                           |
-| **Admin - Lecturer**  | GET    | [`/api/admins/users/lecturers/{id}`](#get-apiadminsuserslecturersid)                                             | Get lecturer with certain id                |
-| **Admin - Student**   | POST   | [`/api/admins/users/students`](#post-apiadminsusersstudents)                                                     | Create a new student                        |
-| **Admin - Student**   | GET    | [`/api/admins/users/students`](#get-apiadminsusersstudents)                                                      | Get all students                            |
-| **Admin - Student**   | GET    | [`/api/admins/users/students/{id}`](#get-apiadminsusersstudentsid)                                               | Get student with certain id                 |
-| **Admin - User**      | GET    | [`/api/admins/users`](#get-apiadminsusers)                                                                       | Get all users                               |
-| **Admin - User**      | GET    | [`/api/admins/users/{id}`](#get-apiadminsusersid)                                                                | Get user with certain id                    |
-| **Admin - Faculty**   | POST   | [`/api/admins/academic/faculties`](#post-apiadminsacademicfaculties)                                             | Create a new faculty                        |
-| **Admin - Major**     | POST   | [`/api/admins/academic/faculties/{faculty_id}/majors`](#post-apiadminsacademicfacultiesfaculty_idmajors)         | Create a new major within a faculty         |
-| **Admin - Room**      | POST   | [`/api/admins/academic/departments/{department_id}/rooms`](#post-apiadminsacademicdepartmentsdepartment_idrooms) | Create a new room within a department       |
-| **Admin - Course**    | POST   | [`/api/admins/academic/majors/{major_id}/courses`](#post-apiadminsacademicmajorsmajor_idcourses)                 | Create a new course within a major          |
-| **Admin - Section**   | POST   | [`/api/admins/academic/courses/{course_id}/sections`](#post-apiadminsacademiccoursescourse_idsections)           | Create a new course section within a course |
+| Category             | Method | Endpoint*                                                              | Description                          |
+|----------------------|--------|------------------------------------------------------------------------|--------------------------------------|
+| **Admin - Current**  | GET    | [`/api/admins`](#get-apiadmins)                                        | Get current admin                    |
+| **Admin - Lecturer** | POST   | [`/api/admins/users/lecturers`](#post-apiadminsuserslecturers)         | Create a new lecturer                |
+| **Admin - Lecturer** | GET    | [`/api/admins/users/lecturers`](#get-apiadminsuserslecturers)          | Get all lecturers                    |
+| **Admin - Lecturer** | GET    | [`/api/admins/users/lecturers/{id}`](#get-apiadminsuserslecturersid)   | Get lecturer with certain id         |
+| **Admin - Lecturer** | PATCH  | [`/api/admins/users/lecturers/{id}`](#patch-apiadminsuserslecturersid) | Update lecturer info with certain id |
+| **Admin - Student**  | POST   | [`/api/admins/users/students`](#post-apiadminsusersstudents)           | Create a new student                 |
+| **Admin - Student**  | GET    | [`/api/admins/users/students`](#get-apiadminsusersstudents)            | Get all students                     |
+| **Admin - Student**  | GET    | [`/api/admins/users/students/{id}`](#get-apiadminsusersstudentsid)     | Get student with certain id          |
+| **Admin - Student**  | PATCH  | [`/api/admins/users/students/{id}`](#patch-apiadminsusersstudentsid)   | Update student info with certain id  |
+| **Admin - User**     | GET    | [`/api/admins/users`](#get-apiadminsusers)                             | Get all users                        |
+| **Admin - User**     | GET    | [`/api/admins/users/{id}`](#get-apiadminsusersid)                      | Get user with certain id             |
+
+### Admin - Academic Management
+
+| Category            | Method | Endpoint*                                                                                                                          | Description                                 |
+|---------------------|--------|------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
+| **Admin - Faculty** | POST   | [`/api/admins/academic/faculties`](#post-apiadminsacademicfaculties)                                                               | Create a new faculty                        |
+| **Admin - Faculty** | GET    | [`/api/admins/academic/faculties`](#get-apiadminsacademicfaculties)                                                                | Get all faculties                           |
+| **Admin - Faculty** | GET    | [`/api/admins/academic/faculties/{faculty_id}`](#get-apiadminsacademicfacultiesfaculty_id)                                         | Get faculty with certain id                 |
+| **Admin - Faculty** | PATCH  | [`/api/admins/academic/faculties/{faculty_id}`](#patch-apiadminsacademicfacultiesfaculty_id)                                       | Update faculty info with certain id         |
+| **Admin - Major**   | POST   | [`/api/admins/academic/faculties/{faculty_id}/majors`](#post-apiadminsacademicfacultiesfaculty_idmajors)                           | Create a new major within a faculty         |
+| **Admin - Major**   | GET    | [`/api/admins/academic/faculties/majors?name=string`](#get-apiadminsacademicfacultiesmajorsnamestring)                             | Get all majors (name like)                  |
+| **Admin - Major**   | GET    | [`/api/admins/academic/faculties/majors/{major_id}`](#get-apiadminsacademicfacultiesmajorsmajor_id)                                | Get major with certain id                   |
+| **Admin - Major**   | PATCH  | [`/api/admins/academic/faculties/majors/{major_id}`](#patch-apiadminsacademicfacultiesmajorsmajor_id)                              | Update major info with certain id           |
+| **Admin - Room**    | POST   | [`/api/admins/academic/departments/{department_id}/rooms`](#post-apiadminsacademicdepartmentsdepartment_idrooms)                   | Create a new room within a department       |
+| **Admin - Room**    | GET    | [`/api/admins/academic/departments/{department_id}/rooms`](#get-apiadminsacademicdepartmentsdepartment_idrooms)                    | Get all rooms in a department               |
+| **Admin - Room**    | PATCH  | [`/api/admins/academic/departments/{department_id}/rooms/{room_id}`](#patch-apiadminsacademicdepartmentsdepartment_idroomsroom_id) | Update room info with certain id            |
+| **Admin - Course**  | POST   | [`/api/admins/academic/majors/{major_id}/courses`](#post-apiadminsacademicmajorsmajor_idcourses)                                   | Create a new course within a major          |
+| **Admin - Course**  | GET    | [`/api/admins/academic/majors/{major_id}/courses?name=string`](#get-apiadminsacademicmajorsmajor_idcoursesnamestring)              | Get all courses in a major                  |
+| **Admin - Course**  | GET    | [`/api/admins/academic/majors/courses/{course_id}`](#get-apiadminsacademicmajorscoursescourse_id)                                  | Get a major with a certain id               |
+| **Admin - Section** | POST   | [`/api/admins/academic/courses/{course_id}/sections`](#post-apiadminsacademiccoursescourse_idsections)                             | Create a new course section within a course |
+| **Admin - Section** | GET    | [`/api/admins/academic/courses/sections/{section_id}`](#get-apiadminsacademiccoursessectionssection_id)                            | Get section with certain id                 |
 
 ### Student
 
-| Category              | Method | Endpoint*                                             | Description                |
-|-----------------------|--------|-------------------------------------------------------|----------------------------|
-| **Student - Current** | GET    | [`/api/students`](#get-apistudents)                   | Get current student        |
-| **Student - Section** | POST   | [`/api/students/sections`](#post-apistudentssections) | Enroll to a course section |
+| Category              | Method | Endpoint*                                                                            | Description                |
+|-----------------------|--------|--------------------------------------------------------------------------------------|----------------------------|
+| **Student - Current** | GET    | [`/api/students`](#get-apistudents)                                                  | Get current student        |
+| **Student - Section** | POST   | [`/api/students/courses/sections`](#post-apistudentssections)                        | Enroll to a course section |
+| **Student - Section** | GET    | [`/api/students/courses/sections?query=string`](#get-apistudentssectionsquerystring) | Get Available Section      |
+
+### Lecturer
+
+| Category               | Method | Endpoint*                                                                                     | Description                |
+|------------------------|--------|-----------------------------------------------------------------------------------------------|----------------------------|
+| **Lecturer - Current** | GET    | [`/api/lecturers`](#get-apilecturers)                                                         | Get current lecturer       |
+| **Lecturer - Section** | POST   | [`/api/lecturers/courses/sections`](#post-apilecturerscoursessections)                        | Enroll to a course section |
+| **Lecturer - Section** | GET    | [`/api/lecturers/courses/sections?query=string`](#get-apilecturerscoursessectionsquerystring) | Get Available Section      |
 
 ## Authentication
 
@@ -285,7 +313,7 @@ none
 
 ***
 
-### [`PATH /api/admins/users/lecturers/{id}`](#endpoints)
+### [`PATCH /api/admins/users/lecturers/{id}`](#endpoints)
 
 This endpoint is used to update information of a lecturer with a certain ID.
 
@@ -784,6 +812,68 @@ empty response with status code 201 (Created).
 
 ***
 
+### [`GET /api/admins/academic/majors/{major_id}/courses?name=string`](#endpoints)
+
+This endpoint is used to get all courses in a major/department.
+
+#### Payload:
+
+none
+
+- `{major_id}` type is Long, the ID of the major/department.
+- `name` type is String (OPTIONAL), the name of the course to filter by.
+- If `name` is not provided, all courses in the major/department will be returned.
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "name": "string",
+    "course_sections": [
+      {
+        "id": 23,
+        "name": "string",
+        "lecturer": "string",
+        "room": "string"
+      }
+    ]
+  }
+]
+```
+
+***
+
+### [`GET /api/admins/academic/majors/courses/{course_id}`](#endpoints)
+
+This endpoint is used to get a course with a certain ID.
+
+#### Payload:
+
+none
+
+- `{course_id}` type is Long, the ID of the course.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "course_sections": [
+    {
+      "id": 23,
+      "name": "string",
+      "lecturer": "string",
+      "room": "string"
+    }
+  ]
+}
+```
+
+***
+
 ### [`POST /api/admins/academic/courses/{course_id}/sections`](#endpoints)
 
 This endpoint is used to create a new course section.
@@ -810,6 +900,37 @@ This endpoint is used to create a new course section.
 empty response with status code 201 (Created).
 
 ***
+
+### [`GET /api/admins/academic/courses/sections/{section_id}`](#endpoints)
+
+This endpoint is used to get a course section with a certain ID.
+
+#### Payload:
+
+none
+
+- `{section_id}` type is Long, the ID of the course section.
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "lecturer": {
+    "id": 23,
+    "name": "string"
+  },
+  "room": {
+    "id": 23,
+    "name": "string"
+  },
+  "course": {
+    "id": 23,
+    "name": "string"
+  }
+}
+```
 
 ## Student
 
@@ -870,3 +991,117 @@ This endpoint is used to enroll a student to a course section.
 empty response with status code 204 (No Content).
 
 ***
+
+### [`GET /api/students/sections?query=string`](#endpoints)
+
+This endpoint is used to get all available course sections for the student.
+
+#### Payload:
+
+none
+
+- `query` type is String (OPTIONAL), the name of the course to filter by.
+- If `query` is not provided, all available course sections will be returned.
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "course_name": "string",
+    "section_name": "string",
+    "room": "string",
+    "lecturer": "string"
+  }
+]
+```
+
+## Lecturer
+
+`Authorization: Bearer {access_token}`
+
+### [`GET /api/lecturers`](#endpoints)
+
+This endpoint is used to get the current lecturer's information.
+
+#### Payload:
+
+none
+
+#### Response:
+
+```json
+{
+  "id": 23,
+  "name": "string",
+  "email": "string",
+  "nip": "string",
+  "nidn": "string",
+  "faculty": "string",
+  "department": "string",
+  "advised_students": [
+    {
+      "id": 23,
+      "name": "string",
+      "nim": "string"
+    }
+  ],
+  "courses_taught": [
+    {
+      "id": 23,
+      "course_name": "string",
+      "section_name": "string",
+      "room": "string",
+      "lecturer": "string"
+    }
+  ]
+}
+```
+
+***
+
+### [`POST /api/lecturers/courses/sections`](#endpoints)
+
+This endpoint is used to enroll a lecturer to a course section.
+
+#### Payload:
+
+```json
+{
+  "section_id": 23
+}
+```
+
+- `section_id` type is Long, the ID of the course section.
+
+#### Response:
+
+empty response with status code 204 (No Content).
+
+***
+
+### [`GET /api/lecturers/courses/sections?query=string`](#endpoints)
+
+This endpoint is used to get all available course sections for the lecturer.
+
+#### Payload:
+
+none
+
+- `query` type is String (OPTIONAL), the name of the course to filter by.
+- If `query` is not provided, all available course sections will be returned.
+
+#### Response:
+
+```json
+[
+  {
+    "id": 23,
+    "course_name": "string",
+    "section_name": "string",
+    "room": "string",
+    "lecturer": "string"
+  }
+]
+```

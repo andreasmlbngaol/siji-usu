@@ -53,8 +53,7 @@ public class AdminCourseController {
         String name,
         @JsonProperty("course_sections")
         List<CourseSectionSumDto> courseSections
-    ) {
-    }
+    ) { }
 
     @GetMapping(Routing.MAJORS + "/{majorId}" + Routing.COURSES)
     public List<CourseDto> getCoursesByMajor(
@@ -97,11 +96,17 @@ public class AdminCourseController {
         );
     }
 
+    public record CourseSumDto(
+        Long id,
+        String name
+    ) { }
+
     public record CourseSectionDto(
         Long id,
         String name,
         AdminUsersController.LecturerSumDto lecturer,
-        AdminRoomController.RoomDto room
+        AdminRoomController.RoomDto room,
+        CourseSumDto course
     ) { }
 
     @GetMapping(Routing.COURSES + Routing.SECTIONS + "/{sectionId}")
