@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.jawapbo"
-version = "0.1.3-SNAPSHOT"
+version = "0.1.31-SNAPSHOT"
 
 java {
     toolchain {
