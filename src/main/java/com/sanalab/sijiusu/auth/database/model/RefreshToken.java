@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 
+@SuppressWarnings("unused")
 @Entity(name = "refresh_tokens")
 public class RefreshToken {
     @Id

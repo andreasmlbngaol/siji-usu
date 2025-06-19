@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 
+@SuppressWarnings("unused")
 @Entity(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {

@@ -11,6 +11,7 @@ public class HashEncoder {
         return bCrypt.encode(rawPassword);
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean matches(String rawPassword, String hashedPassword) {
         return bCrypt.matches(rawPassword, hashedPassword);
     }
