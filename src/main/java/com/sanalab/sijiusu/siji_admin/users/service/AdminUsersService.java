@@ -165,12 +165,12 @@ public class AdminUsersService {
         );
         if(name != null && !name.isBlank()) student.setName(name);
         if(email != null && !email.isBlank()) {
-            if (userRepository.existsByEmail(email))
+            if (userRepository.countByEmail(email) > 1)
                 throw responseException(HttpStatus.CONFLICT, "Email already exists");
             student.setEmail(email);
         }
         if(nim != null && !nim.isBlank()) {
-            if(studentRepository.existsByNim(nim))
+            if(studentRepository.countByNim(nim) > 1)
                 throw responseException(HttpStatus.CONFLICT, "NIM already exists");
             student.setNim(nim);
         }
@@ -192,11 +192,18 @@ public class AdminUsersService {
             .toList();
     }
 
+    public List<AdminUsersController.LecturerDto> getLecturersByMajorId(Long id) {
+        return lecturerRepository.findAllByDepartmentId(id)
+            .stream()
+            .map(LecturerConverter::toDto)
+            .toList();
+    }
+
     public AdminUsersController.LecturerDto getLecturerById(Long id) {
-        var teacher = lecturerRepository.findById(id).orElseThrow(() ->
+        var lecturer = lecturerRepository.findById(id).orElseThrow(() ->
             responseException(HttpStatus.NOT_FOUND, "Lecturer not found")
         );
-        return LecturerConverter.toDto(teacher);
+        return LecturerConverter.toDto(lecturer);
     }
 
     public List<AdminUsersController.LecturerDto> getLecturersByNameLike(String name) {
@@ -221,17 +228,17 @@ public class AdminUsersService {
 
         if(name != null && !name.isBlank()) lecturer.setName(name);
         if(email != null && !email.isBlank()) {
-            if (userRepository.existsByEmail(email))
+            if (userRepository.countByEmail(email) > 1)
                 throw responseException(HttpStatus.CONFLICT, "Email already exists");
             lecturer.setEmail(email);
         }
         if(nip != null && !nip.isBlank()) {
-            if(lecturerRepository.existsByNip(nip))
+            if(lecturerRepository.countByNip(nip) > 1)
                 throw responseException(HttpStatus.CONFLICT, "NIP already exists");
             lecturer.setNip(nip);
         }
         if(nidn != null && !nidn.isBlank()) {
-            if(lecturerRepository.existsByNidn(nidn))
+            if(lecturerRepository.countByNidn(nidn) > 1)
                 throw responseException(HttpStatus.CONFLICT, "NIDN already exists");
             lecturer.setNidn(nidn);
         }

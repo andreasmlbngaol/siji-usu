@@ -22,7 +22,7 @@ public class CorsConfig {
                         "http://*.andreasmlbngaol.site",
                         "http://andreasmlbngaol.site:*"
                     )
-                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                     .allowedHeaders("*")
                     .allowCredentials(true);
             }

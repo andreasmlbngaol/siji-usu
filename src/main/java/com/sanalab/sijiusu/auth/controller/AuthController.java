@@ -1,6 +1,7 @@
 package com.sanalab.sijiusu.auth.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sanalab.sijiusu.auth.data.Role;
 import com.sanalab.sijiusu.auth.service.AuthService;
 import com.sanalab.sijiusu.auth.service.JwtService;
 import com.sanalab.sijiusu.core.util.Routing;
@@ -35,6 +36,14 @@ public class AuthController {
         @NotNull String password
     ) {}
 
+    public record LoginResponse(
+        @JsonProperty("access_token")
+        String accessToken,
+        @JsonProperty("refresh_token")
+        String refreshToken,
+        Role role
+    ) { }
+
     public record RefreshRequest(
         @JsonProperty("refresh_token")
         String refreshToken
@@ -43,15 +52,13 @@ public class AuthController {
     //    === LOGIN ===
 
     @PostMapping(Routing.LOGIN)
-    public ResponseEntity<AuthService.TokenPair> login(
-        @Valid @RequestBody LoginRequest body,
-        @RequestParam(value = "web", defaultValue = "false") boolean isWeb,
-        HttpServletResponse response
+    public ResponseEntity<LoginResponse> login(
+        @Valid @RequestBody LoginRequest body
     ) {
-        var tokenPair = authService.login(body.identifier, body.password);
+        var resp = authService.login(body.identifier, body.password);
 
-        if (isWeb) return createCookieResponse(tokenPair, response);
-        return ResponseEntity.ok(tokenPair);
+        System.out.println("LOGIN");
+        return ResponseEntity.ok(resp);
     }
 
     private ResponseEntity<AuthService.TokenPair> createCookieResponse(
@@ -89,6 +96,8 @@ public class AuthController {
         HttpServletResponse response
     ) {
         String refreshToken;
+
+        System.out.println("REFRESH");
 
         if(isWeb) {
             refreshToken = extractRefreshTokenFromCookies(request.getCookies());
@@ -154,11 +163,12 @@ public class AuthController {
     }
 
     public record ChangePasswordPayload(
-        @NotNull String oldPassword,
+        @JsonProperty("old_password") @NotNull String oldPassword,
         @Pattern(
             regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$",
             message = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one digit."
         )
+        @JsonProperty("new_password")
         @NotNull String newPassword
     ) { }
 

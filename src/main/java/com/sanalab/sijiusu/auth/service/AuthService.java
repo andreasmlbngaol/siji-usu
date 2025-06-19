@@ -1,6 +1,7 @@
 package com.sanalab.sijiusu.auth.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sanalab.sijiusu.auth.controller.AuthController;
 import com.sanalab.sijiusu.auth.data.Role;
 import com.sanalab.sijiusu.auth.database.model.RefreshToken;
 import com.sanalab.sijiusu.auth.database.model.User;
@@ -67,7 +68,7 @@ public class AuthService {
     ) {}
 
 
-    public TokenPair login(String identifier, String password) {
+    public AuthController.LoginResponse login(String identifier, String password) {
         if (identifier == null || identifier.isBlank() || password == null || password.isBlank()) {
             throw new BadCredentialsException("Identifier and password are required");
         }
@@ -102,7 +103,12 @@ public class AuthService {
         if(!hashEncoder.matches(password, user.getPasswordHashed()))
             throw new BadCredentialsException("Invalid credentials");
 
-        return storeAndGetToken(user.getId(), user.getRole(), null);
+        var token = storeAndGetToken(user.getId(), user.getRole(), null);
+        return new AuthController.LoginResponse(
+            token.accessToken,
+            token.refreshToken,
+            user.getRole()
+        );
     }
 
     @Transactional

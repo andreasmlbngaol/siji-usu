@@ -86,11 +86,15 @@ public class LecturerService {
 
         var majorId = lecturer.getDepartment().getId();
         if(courseName == null || courseName.isBlank()) {
-            return courseSectionRepository.findAllByCourse_Major_Id(majorId)
+            var sections = courseSectionRepository.findAllByCourse_Major_Id(majorId)
                 .stream()
-                .filter(section -> section.getLecturer() == null || !section.getLecturer().getId().equals(lecturerId))
+                .filter(section -> section.getLecturer() == null)
                 .map(CourseSectionConverter::toSectionTakenDto)
                 .toList();
+
+            sections.forEach(section -> System.out.println(section.lecturer()));
+
+            return sections;
         }
 
         return courseSectionRepository.findAllByCourse_Major_IdAndCourse_NameContainingIgnoreCase(majorId, courseName)

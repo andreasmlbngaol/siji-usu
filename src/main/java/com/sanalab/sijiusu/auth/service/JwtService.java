@@ -21,7 +21,7 @@ public class JwtService {
     private String jwtSecret;
 
     private SecretKey secretKey;
-    private final long accessTokenValidityMs = 15 * 60 * 1000L; // 15 minutes
+    private final long accessTokenValidityMs = 60 * 60 * 1000L; // 1 jam
     private final long refreshTokenValidityMs = 24 * 60 * 60 * 1000L; // 1 hari
 
     public long getAccessTokenValidityMs() {

@@ -41,7 +41,7 @@ public class AdminFacultyService {
     }
 
     public List<AdminFacultyController.FacultyDto> getAllFaculties() {
-        return facultyRepository.findAll()
+        return facultyRepository.findAllByOrderById()
             .stream()
             .map(FacultyConverter::toDto)
             .toList();

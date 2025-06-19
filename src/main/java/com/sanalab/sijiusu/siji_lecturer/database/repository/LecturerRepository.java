@@ -12,6 +12,8 @@ public interface LecturerRepository extends JpaRepository<Lecturer, Long> {
 
     List<Lecturer> findAllByNameContainingIgnoreCase(String name);
 
-    Boolean existsByNip(String nip);
-    Boolean existsByNidn(String nidn);
+    Long countByNip(String nip);
+    Long countByNidn(String nidn);
+
+    List<Lecturer> findAllByDepartmentId(Long departmentId);
 }

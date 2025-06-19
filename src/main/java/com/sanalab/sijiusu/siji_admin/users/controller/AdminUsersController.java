@@ -176,6 +176,13 @@ public class AdminUsersController {
         return adminUsersService.getAllLecturers();
     }
 
+    @GetMapping(Routing.LECTURERS + Routing.DEPARTMENTS + "/{id}")
+    public List<LecturerDto> getLecturersByDepartment(
+            @PathVariable Long id
+    ) {
+        return adminUsersService.getLecturersByMajorId(id);
+    }
+
     @GetMapping(Routing.LECTURERS + "/{id}")
     public LecturerDto getLecturerById(@PathVariable Long id) {
         return adminUsersService.getLecturerById(id);
