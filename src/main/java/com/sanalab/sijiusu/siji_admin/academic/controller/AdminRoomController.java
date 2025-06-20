@@ -60,8 +60,8 @@ public class AdminRoomController {
         @Valid @RequestBody UpdateRoomPayload roomDto
     ) {
         adminRoomService.updateRoom(
-            roomId,
             departmentId,
+            roomId,
             roomDto.name()
         );
     }
