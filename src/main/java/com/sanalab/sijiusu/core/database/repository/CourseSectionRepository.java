@@ -9,4 +9,6 @@ public interface CourseSectionRepository extends JpaRepository<CourseSection, Lo
     List<CourseSection> findAllByCourse_Major_IdAndCourse_NameContainingIgnoreCase(Long majorId, String courseName);
 
     List<CourseSection> findAllByCourse_Major_Id(Long courseMajorId);
+
+    List<CourseSection> findByNameIgnoreCase(String name);
 }

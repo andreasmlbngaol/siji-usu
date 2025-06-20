@@ -12,14 +12,16 @@ public class CourseConverter {
         return new AdminCourseController.CourseDto(
             course.getId(),
             course.getName(),
-            sections
+            sections,
+            course.getMajor().getId()
         );
     }
 
     public static AdminCourseController.CourseSumDto toSumDto(Course course) {
         return new AdminCourseController.CourseSumDto(
             course.getId(),
-            course.getName()
+            course.getName(),
+            course.getMajor().getId()
         );
     }
 }

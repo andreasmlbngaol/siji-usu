@@ -52,7 +52,9 @@ public class AdminCourseController {
         Long id,
         String name,
         @JsonProperty("course_sections")
-        List<CourseSectionSumDto> courseSections
+        List<CourseSectionSumDto> courseSections,
+        @JsonProperty("major_id")
+        Long majorId
     ) { }
 
     @GetMapping(Routing.MAJORS + "/{majorId}" + Routing.COURSES)
@@ -98,7 +100,9 @@ public class AdminCourseController {
 
     public record CourseSumDto(
         Long id,
-        String name
+        String name,
+        @JsonProperty ("major_id")
+        Long majorId
     ) { }
 
     public record CourseSectionDto(
@@ -115,4 +119,19 @@ public class AdminCourseController {
     ) {
         return adminCourseService.getCourseSectionById(sectionId);
     }
+
+    public record UpdateCourseSectionPayload(
+        String name,
+        @JsonProperty("room_id")
+        Long roomId
+    ) {}
+
+    @PatchMapping(Routing.COURSES + Routing.SECTIONS + "/{sectionId}")
+    public void updateCourseSection(
+        @PathVariable Long sectionId,
+        @RequestBody UpdateCourseSectionPayload payload
+    ) {
+        adminCourseService.updateCourseSection(sectionId, payload.name(), payload.roomId());
+    }
+
 }

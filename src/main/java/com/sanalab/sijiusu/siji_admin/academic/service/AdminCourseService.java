@@ -167,4 +167,25 @@ public class AdminCourseService {
 
         return CourseSectionConverter.toDto(section);
     }
+
+    public void updateCourseSection(Long sectionId, String name, Long roomId) {
+        var section = sectionRepository.findById(sectionId).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Course section not found")
+        );
+
+
+        if(!sectionRepository.findByNameIgnoreCase(name).isEmpty() && !section.getName().equalsIgnoreCase(name)) {
+            throw responseException(HttpStatus.CONFLICT, "Course section with this name already exists");
+        }
+
+        var room = roomRepository.findById(roomId).orElseThrow(() ->
+            responseException(HttpStatus.NOT_FOUND, "Room not found")
+        );
+
+        if(name != null && !name.isBlank()) {
+            section.setName(name);
+        }
+        section.setRoom(room);
+        sectionRepository.save(section);
+    }
 }

@@ -36,7 +36,7 @@ public class CourseSectionConverter {
 
         return new AdminCourseController.CourseSectionDto(
             section.getId(),
-            section.getCourse().getName(),
+            section.getName(),
             lecturer,
             room,
             course

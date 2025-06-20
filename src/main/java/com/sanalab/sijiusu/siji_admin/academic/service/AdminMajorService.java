@@ -82,7 +82,7 @@ public class AdminMajorService {
 
     @Transactional
     public void updateMajor(Long id, String name, String majorCode) {
-        Major major = majorRepository.findById(id).orElseThrow(() ->
+        var major = majorRepository.findById(id).orElseThrow(() ->
             responseException(HttpStatus.NOT_FOUND, "Major not found")
         );
 
