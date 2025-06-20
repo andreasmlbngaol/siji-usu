@@ -17,10 +17,10 @@ public class CorsConfig {
                 registry.addMapping("/**")
                     .allowedOriginPatterns(
                         "http://localhost:*",
-                        "https://*.andreasmlbngaol.site",
-                        "https://andreasmlbngaol.site:*",
-                        "http://*.andreasmlbngaol.site",
-                        "http://andreasmlbngaol.site:*"
+                        "https://*.sanalab.live",
+                        "https://sanalab.live:*",
+                        "http://*.sanalab.live",
+                        "http://sanalab.live:*"
                     )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                     .allowedHeaders("*")
