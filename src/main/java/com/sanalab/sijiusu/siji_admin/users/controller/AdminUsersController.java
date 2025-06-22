@@ -37,7 +37,7 @@ public class AdminUsersController {
         @JsonProperty("major_id")
         @NotNull Long majorId,
         @JsonProperty("academic_advisor_id")
-        @NotNull Long academicAdvisorId
+        Long academicAdvisorId
     ) { }
 
     @PostMapping(Routing.STUDENTS)

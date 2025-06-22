@@ -31,7 +31,9 @@ public class LecturerConverter {
     }
 
     public static AdminUsersController.LecturerSumDto toSumDto(Lecturer lecturer) {
-
+        if(lecturer == null) {
+            return null; // Handle null case if necessary
+        }
         return new AdminUsersController.LecturerSumDto(
             lecturer.getId(),
             lecturer.getName()

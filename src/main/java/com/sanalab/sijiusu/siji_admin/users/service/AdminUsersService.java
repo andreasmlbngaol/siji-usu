@@ -61,7 +61,7 @@ public class AdminUsersService {
     ) {
         // Validate the payload
         if (name == null || email == null || password == null ||
-            nim == null || majorId == null || academicAdvisorId == null || year == null) {
+            nim == null || majorId == null || year == null) {
             throw responseException(HttpStatus.BAD_REQUEST, "Missing required fields");
         }
 
@@ -75,10 +75,7 @@ public class AdminUsersService {
             responseException(HttpStatus.NOT_FOUND, "Major not found")
         );
 
-        // Check if the academic advisor exists
-        var academicAdvisor = lecturerRepository.findById(academicAdvisorId).orElseThrow(() ->
-            responseException(HttpStatus.NOT_FOUND, "Academic advisor not found")
-        );
+
 
         // Create a new student entity and save it to the database
         Student student = new Student();
@@ -87,9 +84,17 @@ public class AdminUsersService {
         student.setPasswordHashed(hashEncoder.encode(password));
         student.setNim(nim);
         student.setMajor(major);
-        student.setAcademicAdvisor(academicAdvisor);
         student.setRole(Role.Student);
         student.setYear(year);
+
+        // Check if the academic advisor exists
+        if(academicAdvisorId != null) {
+            var academicAdvisor = lecturerRepository.findById(academicAdvisorId).orElseThrow(() ->
+                responseException(HttpStatus.NOT_FOUND, "Academic advisor not found")
+            );
+            student.setAcademicAdvisor(academicAdvisor);
+        }
+
 
         studentRepository.save(student);
     }

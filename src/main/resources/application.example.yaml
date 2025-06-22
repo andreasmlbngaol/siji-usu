@@ -18,6 +18,7 @@ spring:
 
 jwt:
   secret: ${BASE64_JWT_SECRET} # 256-bit minimum (32 plain character)
+  # Example: aW5pY3VtYW5qd3RzZWNyZXRrZXl5YW5nZGl0ZXN0dGVzdGFqYQ==
 
 server:
   port: 8080

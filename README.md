@@ -1,5 +1,65 @@
-# Endpoints
+[Frontend GitHub Repository with React](https://github.com/BintangAull/siji-usu-frontend)
 
+# Setup
+
+## Requirements
+
+- **Java Development Kit (JDK) 21 or later**
+
+  [Download here](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html) or IntelliJ will download it automatically
+
+- **Gradle 8.14 or later**
+
+  [Download here](https://gradle.org/releases/) or IntelliJ will download it automatically
+
+
+## How To Use
+
+### 1. IntelliJ IDEA
+
+1. **Modify Database:**
+  - Create a new empty database in PostgreSQL
+      ```postgresql
+      CREATE DATABASE db_name;
+      ```
+  - Open [**application.example.yaml**](src/main/resources/application.example.yaml) in `/src/main/resources/com/jawa/utsposclient/`
+  - Change `DATABASE_NAME`, `USERNAME`, `PASSWORD` with your own database configuration
+2. **Modify JWT Secret Key:**
+  - Open [**application.example.yaml**](src/main/resources/application.example.yaml) in `/src/main/resources/com/jawa/utsposclient/`
+  - Change `BASE64_JWT_SECRET` as you want. You can decode plain text to Base64 using [this online tool](https://www.base64decode.org/).
+3. Rename the file name `application.example.yaml` to `application.yaml`
+4. **Run application**
+
+
+## Libraries and Technologies Used
+
+The following libraries are used in this project:
+
+- **Spring Boot**  
+  Main framework providing auto-configuration and application infrastructure for Spring applications.
+
+- **Spring Web (Spring MVC)**  
+  Provides web features and REST API capabilities with Model-View-Controller architecture.
+
+- **Spring Security**  
+  Security framework that handles authentication and authorization with JWT support.
+
+- **Spring Data JPA**  
+  Simplifies data access and entity management using JPA (Java Persistence API).
+
+- **PostgreSQL JDBC Driver**  
+  A JDBC driver for connecting the Java application to PostgreSQL databases.
+
+- **JBCrypt**  
+  A library for securely hashing passwords using the bcrypt algorithm.
+
+- **Gradle**  
+  Build system and dependency management tool for the project.
+
+These libraries are essential to the functionality and user interface of the application. For more details on how to configure and use them, refer to the [`build.gradle.kts`](build.gradle.kts) file in the project.
+
+
+# Endpoints
 
 ## Table of Contents
 
